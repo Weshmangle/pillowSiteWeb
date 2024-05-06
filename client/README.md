@@ -1,8 +1,34 @@
-# React + Vite
+## Caractéristiques
+- En React avec Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Dépendances coté client
+- **axios** : Pour les requêtes HTTP.
+- **react-router-dom** : Pour la gestion des routes dans React.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+1. Ouvrir votre terminal et accéder au dossier **client**
+```
+cd your_path/client
+```
+
+2. Installer les dépendances
+```
+npm i
+```
+
+3. Mettre le port d'écoute de votre choix et host à "true"
+```
+export default defineConfig({
+  plugins: [react()],
+  server : {
+      host: true,
+      port: Saisissez le port d'écoute de votre choix,
+  }
+})
+```
+
+4. Executer l'application en mode développement (démarrer le serveur)
+```
+npm run dev
+```
