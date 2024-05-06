@@ -3,9 +3,9 @@ import  { Routes , Route } from 'react-router-dom'
 
 
 /**** Feuille de style CSS ******/
-// Components
+/* Components */
 import './stylesheet/header-component.css'
-// Pages
+/* Pages */
 import './stylesheet/App.css'
 import './stylesheet/contact-page.css'
 import './stylesheet/login-page.css'
