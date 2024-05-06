@@ -1,0 +1,148 @@
+.contact-page-main {
+  background: #212121;
+  text-align: center;
+}
+
+.contactpage-article {
+  width: 100%;
+  /*filter: blur(10px);*/
+}
+
+fieldset {
+  border: 0;
+}
+
+.contactpage-input-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.contactpage-input-label input {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.contactpage-input-label input:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.contactpage-input-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.contactpage-input-label input:focus~ label,
+.contactpage-input-label input:valid ~ label {
+  top: 15%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.contactpage-input-label input:focus {
+  border: 1px solid #950C0C;
+}
+
+.contactpage-select {
+    display: block;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    width: 100%;
+    margin-bottom:1rem;
+    background: #171717;
+    color: white;
+    font-size: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.contactpage-select:hover {
+    cursor: pointer;
+    background : rgba(0, 0, 0, 0.5);
+    border : 1px solid #950c0c;
+}
+
+.contactpage-select > option {
+    color: white;
+}
+
+.contactpage-textarea {
+    display:block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    height: 250px;
+    background: transparent;
+    color: white;
+    font-size: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.contactpage-textarea:hover {
+    border: 1px solid white;
+}
+
+.contactpage-textarea:valid {
+    border : 1px solid white;
+}
+
+.contactpage-form-button {
+  font-size: 2.5rem;
+  border: 0;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  background: #950c0c;
+  color: white;
+}
+
+.contactpage-form-button:hover {
+  cursor: pointer;
+  color: #950c0c;
+  background: white;
+}
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    
+    .contactpage-article {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    
+    .contactpage-article {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .contactpage-input-label label {
+      left: 5%;
+    }
+
+}

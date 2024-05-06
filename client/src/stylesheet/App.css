@@ -1,0 +1,84 @@
+/*Généralités*/
+body {
+  margin: 0;
+  font-size: 1.9rem;
+  font-family: sans-serif;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #FFFFFF;
+}
+
+html {
+	font-size: 62.5%;
+	/*scroll-behavior : smooth;*/
+}
+
+* {
+	box-sizing: border-box;
+}
+
+main {
+  padding: 5rem 1rem 5rem 1rem;
+}
+
+.img-responsive {
+  width:100%;
+  height:auto;
+}
+
+.figure {
+  width: 100px;
+  margin: 0;
+  line-height: 0;
+}
+
+input,
+label {
+  transition: all 0.2s linear;
+}
+
+button {
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+/*COMPOSANT HEADER*/
+.header-navlink {
+  text-decoration: none;
+  padding: 1rem;
+  color: #FFFFFF;
+  margin: 1rem;
+  transition: all 0.4s ease-in-out;
+}
+
+
+.header-navlink:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1500px;
+  background: #171717;
+  padding : 2rem;
+}
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    
+    
+    
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    
+    main {
+      padding: 5rem;
+    }
+
+}
