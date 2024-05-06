@@ -8,7 +8,7 @@ const Contact = () => {
             
             <h1 className="contactpage-title">Formulaire de contact</h1>
                 
-                {/******** Formulaire ***********/}
+                {/***** Formulaire de contact ***********/}
                 <form>
                   
                   <fieldset className="contactpage-input-label">

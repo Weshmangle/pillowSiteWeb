@@ -1,0 +1,93 @@
+.login-page-main {
+  background: #212121;
+  text-align: center;
+  padding: 5rem 1rem 10rem 1rem;
+}
+
+.loginpage-article {
+  width: 100%;
+}
+
+.loginpage-input-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.loginpage-input-label input {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.loginpage-input-label input:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.loginpage-input-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.loginpage-input-label input:focus~ label,
+.loginpage-input-label input:valid ~ label {
+  top: 15%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.loginpage-input-label input:focus {
+  border: 1px solid #950C0C;
+}
+
+.loginpage-form-button {
+  font-size: 2.5rem;
+  border: 0;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  background: #950c0c;
+  color: white;
+}
+
+.loginpage-form-button:hover {
+  cursor: pointer;
+  color: #950c0c;
+  background: white;
+}
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    .loginpage-article {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    .loginpage-article {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .loginpage-input-label label {
+      left: 5%;
+    }
+}

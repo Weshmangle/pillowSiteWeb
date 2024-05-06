@@ -13,9 +13,8 @@ const Header = () => {
             {/******** Navbar ****************/}
             <nav className="header-navbar">
                 <NavLink className="header-navlink" to="/" >Accueil</NavLink>
-                <NavLink className="header-navlink" to="#" >Studio</NavLink>
+                <NavLink className="header-navlink" to="/studio" >Studio</NavLink>
                 <NavLink className="header-navlink" to="/contact" >Contact</NavLink>
-                <NavLink className="header-navlink" to="/inscription" >S'inscrire</NavLink>
                 <NavLink className="header-navlink" to="/connexion" >Se connecter</NavLink>
             </nav>
             

@@ -5,11 +5,6 @@
 
 .contactpage-article {
   width: 100%;
-  /*filter: blur(10px);*/
-}
-
-fieldset {
-  border: 0;
 }
 
 .contactpage-input-label {

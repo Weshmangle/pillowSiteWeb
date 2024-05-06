@@ -1,0 +1,21 @@
+.header-navlink {
+  text-decoration: none;
+  padding: 1rem;
+  color: #FFFFFF;
+  margin: 1rem;
+  transition: all 0.4s ease-in-out;
+}
+
+
+.header-navlink:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1500px;
+  background: #171717;
+  padding : 2rem;
+}
