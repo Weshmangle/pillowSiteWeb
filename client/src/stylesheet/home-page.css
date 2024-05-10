@@ -1,0 +1,192 @@
+.home-page-main {
+    background: #212121;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+.home-page-header {
+    text-align: center;
+}
+
+.img-home-slider {
+    width: 100%;
+    height: auto;
+}
+
+.home-page-header figure {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 0.8;
+}
+
+.cercle-slider {
+    border: 3px solid white;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+.cercle-slider:hover {
+   cursor: pointer;
+}
+
+.flex-cercle-slider {
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.current-img-cercle-slider {
+    border: 3px solid white;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    background: #950C0C; 
+}
+
+.current-img-cercle-slider:hover {
+   cursor: pointer; 
+}
+
+.home-page-header-title {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.home-page-header-section-navlink {
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #950C0C;
+}
+
+.home-page-header-section-navlink:hover {
+    color: #950C0C;
+    background: white;
+}
+
+.home-page-article-section-flex {
+}
+
+.home-page-social-media-article {
+    height: 100vh;
+    padding: 3rem;
+    background: #171717;
+}
+
+.home-page-social-media-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-page-social-media-section > figure {
+    width: 30%;
+    margin: 0;
+    line-height: 0;
+    text-align: center;
+}
+
+.img-logo-twitter {
+    width: 60%;
+    height: auto;
+    text-align: center;
+}
+
+.home-page-social-media-article-paragraph {
+    margin-bottom: 2rem;
+}
+
+.home-page-social-media-article-section-link {
+    text-decoration: none;
+    padding: 1rem;
+    border: 3px solid #7289da;
+    color: #7289da;
+    display: block;
+    width: 200px;
+    text-align: center;
+}
+
+.home-page-social-media-article-section-link:hover {
+    background: #7289da;
+    color: white;
+}
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    .home-page-header-title {
+        bottom: 40%;
+    }
+    
+    .home-page-header-section h1 {
+        font-size: 5rem;
+    }
+    
+    .home-page-social-media-article {
+        height: 100vh;
+        padding: 3rem;
+        background: #171717;
+    }
+
+    .home-page-social-media-section {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .home-page-social-media-article > * {
+        width: 100%;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    .img-home-slider {
+        width: 100%;
+        max-height: 80vh;
+        object-fit: cover;
+    }
+    
+    .home-page-header-title {
+        bottom: 40%;
+    }
+    
+    .home-page-header-section h1 {
+        font-size: 5rem;
+    }
+    
+    .home-page-social-media-article {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .home-page-social-media-section {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .home-page-social-media-section > figure {
+        width: 40%;
+    }
+    
+    .home-page-social-media-article > * {
+        width: 45%;
+    }
+    
+    .img-logo-twitter {
+        width: 80%;
+        height: auto;
+    }
+
+}

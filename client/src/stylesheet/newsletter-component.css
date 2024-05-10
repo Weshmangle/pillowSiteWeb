@@ -1,0 +1,95 @@
+.newsletter-article {
+    text-align: center;
+    height: 100vh;
+    padding: 10rem 3rem 3rem 3rem;
+}
+
+.newsletter-fieldset {
+   position: relative;
+   border:0;
+   padding:0;  
+}
+
+.newsletter-fieldset input {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.newsletter-fieldset input:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.newsletter-fieldset label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.newsletter-fieldset input:focus~ label,
+.newsletter-fieldset input:valid ~ label {
+  top: 15%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.newsletter-fieldset input:focus {
+  border: 1px solid #950C0C;
+}
+
+.newsletter-button {
+  padding: 1rem;
+  border: 0;
+  margin: 2rem;
+  font-size: 2rem;
+  background: #950C0C;
+  color: white;
+}
+
+.newsletter-button:hover {
+  cursor: pointer;
+  background: white;
+  color: #950C0C;
+}
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    .newsletter-fieldset label {
+      left: 6%;
+    }
+    
+    .newsletter-fieldset input {
+      width: 100%;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    .newsletter-fieldset label {
+      left: 23%;
+    }
+    
+    .newsletter-fieldset input {
+      width: 60%;
+    }
+    
+    .newsletter-paragraph {
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}

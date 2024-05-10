@@ -10,7 +10,7 @@ body {
 
 html {
 	font-size: 62.5%;
-	/*scroll-behavior : smooth;*/
+	scroll-behavior : smooth;
 }
 
 * {
@@ -26,10 +26,18 @@ main {
   height:auto;
 }
 
+.container {
+  max-width: 1500px;
+}
+
 .figure {
   width: 100px;
   margin: 0;
   line-height: 0;
+}
+
+picture {
+  margin: 0;
 }
 
 input,
@@ -37,7 +45,8 @@ label {
   transition: all 0.2s linear;
 }
 
-button {
+button,
+a {
   transition: all 0.3s ease-in-out;
 }
 

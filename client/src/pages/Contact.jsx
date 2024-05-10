@@ -1,4 +1,13 @@
+import { useState , useEffect } from 'react'
+
 const Contact = () => {
+    
+    useEffect(() => {
+        
+        // Scroll remis à zéro
+        scrollTo(0,0)
+        
+    }, [])
     
     return (
         <main className="contact-page-main">

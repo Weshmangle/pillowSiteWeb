@@ -1,4 +1,13 @@
+import { useState , useEffect } from 'react'
+
 const Login = () => {
+  
+    useEffect(() => {
+        
+        // Scroll remis à zéro
+        scrollTo(0,0)
+        
+    }, [])
     
     return (
         <main className="login-page-main">

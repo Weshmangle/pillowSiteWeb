@@ -1,3 +1,7 @@
+.header-navbar {
+  display: none;
+}
+
 .header-navlink {
   text-decoration: none;
   padding: 1rem;
@@ -8,7 +12,11 @@
 
 
 .header-navlink:hover {
-  background: rgba(0, 0, 0, 0.5);
+  color: #950C0C;
+}
+
+.header-navlink.active {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .header-flex {
@@ -18,4 +26,77 @@
   max-width: 1500px;
   background: #171717;
   padding : 2rem;
+}
+
+.burger-menu-button {
+  display:block;
+  width:60px;
+  height:60px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  z-index:15000;
+  padding-bottom:1rem;
+}
+
+.burger-menu-line {
+  height:6px;
+  width:100%;
+  margin:8px auto;
+  background: #950C0C;
+  transition: all 0.4s ease;
+}
+
+.burger-line-crossed .burger-menu-line:nth-child(1) {
+  transform: translateY(14px) rotate(45deg);
+}
+
+.burger-line-crossed .burger-menu-line:nth-child(2) {
+  opacity:0;
+}
+
+.burger-line-crossed .burger-menu-line:nth-child(3) {
+  transform: translateY(-14px) rotate(-45deg);
+}
+
+.burger-menu {
+  position: fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background: #171717;
+  z-index:14000;
+  text-align:center;
+  padding-top:5rem;
+  border: 0;
+}
+
+.burger-menu-navlink {
+  display: block;
+  text-decoration: none;
+  color: white;
+  margin-top:5rem;
+}
+
+.burger-menu-navlink:hover {
+  color: #950C0C;
+}
+
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+  .burger-menu-button  {
+    display:none;
+  }
+  
+  .header-navbar {
+    display: block;
+  }
 }
