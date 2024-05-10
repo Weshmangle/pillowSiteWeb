@@ -4,8 +4,6 @@ import  { Routes , Route } from 'react-router-dom'
 
 /**** Feuille de style CSS ******/
 import './stylesheet/App.css'
-/* Materialize */
-import 'materialize-css/dist/css/materialize.min.css'
 /* Components */
 import './stylesheet/header-component.css'
 import './stylesheet/newsletter-component.css'

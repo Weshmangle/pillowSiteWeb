@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 const OneGame = () => {
@@ -38,15 +37,7 @@ const OneGame = () => {
     
     
     useEffect(() => {
-        M.AutoInit()
         
-        const elems = document.querySelectorAll('.onegame-page-figure')
-        const instances = M.Parallax.init(elems, {})
-        
-        // Détruire les instances si nécessaire
-        return () => {
-            instances.forEach(instance => instance.destroy());
-        }
     }, []);
     
     

@@ -4,7 +4,6 @@
 
 .onegame-page-header {
     padding: 0;
-    max-height: 80vh;
 }
 
 .onegame-page-figure {
@@ -13,5 +12,5 @@
 }
 
 .onegame-header-img {
-    
+    max-height: 80vh;
 }
