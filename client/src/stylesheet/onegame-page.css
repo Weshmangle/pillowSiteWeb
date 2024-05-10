@@ -1,5 +1,6 @@
 .onegame-page-main {
-   padding: 0; 
+   background: #212121;
+   padding: 0;
 }
 
 .onegame-page-header {
@@ -13,4 +14,86 @@
 
 .onegame-header-img {
     max-height: 80vh;
+}
+
+.onegame-page-selectedgame-figure img {
+    object-fit: cover;
+    height: 100%;
+}
+   
+
+.onegame-page-article {
+    text-align: center;
+    padding: 5rem 0 0 0;
+}
+
+.onegame-page-selectedgame {
+    margin: 0;
+}
+
+.onegame-page-selectedgame-inverted {
+    margin: 0;
+}
+
+.onegame-page-selectedgame-figure {
+    margin: 0;
+    line-height: 0;
+    width: 100%;
+}
+
+.onegame-page-selectedgame-section {
+    width: 100%;
+    padding: 2rem;
+    text-align: left;
+}
+
+.onegame-page-section-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.onegame-page-selectedgame-title {
+    font-size: 4rem;
+    margin-top: 0;
+}
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    .onegame-page-selectedgame {
+        margin: 0;
+        display: flex;
+        background: black;
+    }
+    
+    .onegame-page-selectedgame-figure {
+        margin: 0;
+        line-height: 0;
+        width: 50%;
+    }
+
+    .onegame-page-selectedgame-section {
+        width: 50%;
+        padding: 5rem;
+        text-align: left;
+    }
+    
+    .onegame-page-selectedgame-inverted {
+        margin: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        background: black;
+    }
+    
+    .onegame-page-selectedgame-title {
+        font-size: 10rem;
+        margin-top: 0;
+    }
 }

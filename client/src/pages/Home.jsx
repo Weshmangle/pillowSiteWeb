@@ -12,7 +12,7 @@ const Home = () => {
             id : 0,
             title : "Pirate Yacht 1",
             summary: "",
-            img: "./image1jeu1.jpg"
+            img: "./image3jeu1.jpg"
         },
         {
             id : 1,
@@ -30,7 +30,7 @@ const Home = () => {
             id : 3,
             title : "Pirate Yacht 4",
             summary: "",
-            img: "./image4jeu2.jpg"
+            img: "./image3jeu4.jpg"
         }
         ]
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
