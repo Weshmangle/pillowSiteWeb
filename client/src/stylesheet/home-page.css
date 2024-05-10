@@ -21,6 +21,10 @@
     line-height: 0.8;
 }
 
+.home-page-header figure img:hover {
+    cursor: pointer;
+}
+
 .cercle-slider {
     border: 3px solid white;
     border-radius: 50px;

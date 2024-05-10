@@ -1,34 +1,36 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink , useNavigate } from 'react-router-dom'
 import { useEffect , useState } from 'react'
 import Newsletter from '../components/Newsletter'
 
 
 const Home = () => {
     
+    const navigate = useNavigate()
+    
     const gamesArray = [
         {
             id : 0,
             title : "Pirate Yacht 1",
             summary: "",
-            img: "./src/assets/image1jeu1.jpg"
+            img: "./image1jeu1.jpg"
         },
         {
             id : 1,
             title : "Pirate Yacht 2",
             summary: "",
-            img: "./src/assets/image2jeu2.jpg"
+            img: "./image2jeu2.jpg"
         },
         {
             id : 2,
             title : "Pirate Yacht 3",
             summary: "",
-            img: "./src/assets/image3jeu3.jpg"
+            img: "./image3jeu3.jpg"
         },
         {
             id : 3,
             title : "Pirate Yacht 4",
             summary: "",
-            img: "./src/assets/image4jeu2.jpg"
+            img: "./image4jeu2.jpg"
         }
         ]
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -55,6 +57,14 @@ const Home = () => {
         setIsSlided(!isSlided)
     }
     
+    /* Fonction pour rediriger vers jeu */
+    const goToGame = (gameIndex) => {
+        
+        setTimeout(() => {
+            navigate(`/game/${gameIndex}`)
+        }, 100)
+    }
+    
     
     return (
         
@@ -65,7 +75,7 @@ const Home = () => {
             <header className="home-page-header">
                 
                 <figure>
-                    <img className={`img-home-slider home-page-article-img`} src={gamesArray[currentImageIndex].img} alt={gamesArray[currentImageIndex].title} />
+                    <img onClick={() => goToGame(gamesArray[currentImageIndex].id)} className={`img-home-slider home-page-article-img`} src={gamesArray[currentImageIndex].img} alt={gamesArray[currentImageIndex].title} />
                     
                     
                     <h1 className={`home-page-header-title`}>{gamesArray[currentImageIndex].title}</h1>
@@ -96,7 +106,7 @@ const Home = () => {
                     </section>
                     
                     
-                    {/*** Section avec les logos réseaux sociaux ****/}
+                    {/*** Section avec les logos réseaux sociaux ***/}
                     <section className="home-page-social-media-section">
                         <figure>
                             <img className="img-responsive" src="./src/assets/discord-logo-0.png" alt="" />

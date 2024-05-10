@@ -10,7 +10,7 @@ const Login = () => {
     }, [])
     
     return (
-        <main className="login-page-main">
+        <main className="login-page-main container">
         
             {/****** Bloc du formulaire *******/}
             <article className="loginpage-article">

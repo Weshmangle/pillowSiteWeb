@@ -13,7 +13,7 @@ const Studio = () => {
     
     
     return (
-        <main className="studio-page-main">
+        <main className="studio-page-main container">
             
             {/****** Article **********/}
             <article className="studio-page-article">

@@ -4,6 +4,8 @@ import  { Routes , Route } from 'react-router-dom'
 
 /**** Feuille de style CSS ******/
 import './stylesheet/App.css'
+/* Materialize */
+import 'materialize-css/dist/css/materialize.min.css'
 /* Components */
 import './stylesheet/header-component.css'
 import './stylesheet/newsletter-component.css'
@@ -13,6 +15,7 @@ import './stylesheet/contact-page.css'
 import './stylesheet/login-page.css'
 import './stylesheet/studio-page.css'
 import './stylesheet/home-page.css'
+import './stylesheet/onegame-page.css'
 
 
 
@@ -22,6 +25,7 @@ import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Studio from './pages/Studio'
+import OneGame from './pages/OneGame'
 
 /***** Composants *******/
 import Header from './components/Header'
@@ -39,6 +43,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/connexion" element={<Login />} />
           <Route path="/studio" element={<Studio />} />
+          <Route path="/game/:gameId" element={<OneGame />} />
       </Routes>
       <Footer />
     </>

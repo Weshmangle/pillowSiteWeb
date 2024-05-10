@@ -34,11 +34,11 @@ const Header = () => {
     
     
     return (
-        <header className="header-flex">
+        <header className="header-flex container">
             
             {/******** Logo Pillow Interactive ************/}
             <figure className="figure">
-                <img className="img-responsive" src="./src/assets/Logo3.png" alt="logo Pillow Interactive"/>
+                <img className="img-responsive" src="../../Logo3.png" alt="logo Pillow Interactive"/>
             </figure>
             
             {/******** Navbar desktop ****************/}

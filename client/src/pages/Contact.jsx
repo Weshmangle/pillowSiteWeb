@@ -10,7 +10,7 @@ const Contact = () => {
     }, [])
     
     return (
-        <main className="contact-page-main">
+        <main className="contact-page-main container">
             
             {/****** Bloc du formulaire *******/}
             <article className="contactpage-article">
