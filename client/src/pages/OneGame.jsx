@@ -53,9 +53,8 @@ const OneGame = () => {
     
     const selectedGame = gamesArray[gameId]
     
+    /* regex pour chiffre paire */
     const evenNumber = /^-?\d*[02468]$/
-    
-    const [counter, setCounter] = useState(0)
     
 
     
@@ -63,15 +62,35 @@ const OneGame = () => {
         
         // Scroll remis à zéro
         scrollTo(0,0)
-    }, []);
+        
+        /* Fonction pour l'effet parallax */
+        const handleScroll = () => {
+            
+            const yPos = window.scrollY
+            const parallaxElements = document.querySelectorAll('.parallax-img')
+            
+            parallaxElements.forEach(element => {
+                const scrollSpeed = parseFloat(element.getAttribute('data-scroll-speed'))
+                element.style.transform = `translateY(${yPos * scrollSpeed}px)`
+            })
+            
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+        
+    }, [])
     
     
     
     return (
         <main className="onegame-page-main container">
             <header className="onegame-page-header">
-                <figure className="onegame-page-figure">
-                    <img className="img-responsive onegame-header-img" src={selectedGame.img} alt={`image de ${selectedGame.title}`} />
+                <figure className="onegame-page-figure parallax-img-container">
+                    <img className="img-responsive parallax-img onegame-header-img" src={selectedGame.img} alt={`image de ${selectedGame.title}`} data-scroll-speed="0.5" />
                 </figure>
             </header>
             
