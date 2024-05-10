@@ -4,7 +4,7 @@
 ## Dépendances coté client
 - **axios** : Pour les requêtes HTTP.
 - **react-router-dom** : Pour la gestion des routes dans React.
-- **materialize-css** : Pour avoir accès à une collection de composants et de styles prédéfinis.
+- **materialize-css**: Pour avoir accès à une collection de composants et de styles prédéfinis.
 
 
 ## Installation
