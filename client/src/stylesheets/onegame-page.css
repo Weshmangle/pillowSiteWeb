@@ -28,6 +28,22 @@
     object-fit: cover;
 }
 
+.game-parallax-img-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 70vh;
+}
+
+.game-parallax-img {
+    position: absolute;
+    top: -150%;
+    left: 0;
+    min-width: 100%;
+    min-height: 300%;
+    object-fit: cover;
+}
+
 .onegame-page-selectedgame-figure img {
     object-fit: cover;
     height: 100%;
@@ -94,6 +110,11 @@
         width: 100%;
         height: 400px;
     }
+    
+    .game-parallax-img {
+        top: -150%;
+        min-height: 300%;
+    }
 }
 
 /**********  DESKTOP **************/
@@ -149,6 +170,11 @@
         animation-timeline: view();
         animation-range-start: cover 0%;
         animation-range-end: contain 50%;
+    }
+    
+    .game-parallax-img {
+        top: -120%;
+        min-height: 200%;
     }
     
 }

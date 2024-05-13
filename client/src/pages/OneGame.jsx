@@ -68,7 +68,7 @@ const OneGame = () => {
         const handleScroll = () => {
             
             const yPos = window.scrollY
-            const parallaxElements = document.querySelectorAll('.parallax-img')
+            const parallaxElements = document.querySelectorAll('.parallax-img, .game-parallax-img')
             
             parallaxElements.forEach(element => {
                 const scrollSpeed = parseFloat(element.getAttribute('data-scroll-speed'))
@@ -76,7 +76,7 @@ const OneGame = () => {
             })
             
         }
-
+        
         window.addEventListener('scroll', handleScroll)
 
         return () => {
@@ -111,8 +111,8 @@ const OneGame = () => {
                     
                     
                         {/***** Bloc avec image du jeu *****/}
-                        <figure className="onegame-page-selectedgame-figure">
-                            <img className="img-responsive" src={oneSection} alt="" />
+                        <figure className="onegame-page-selectedgame-figure game-parallax-img-container">
+                            <img className="img-responsive game-parallax-img" src={oneSection} alt="" data-scroll-speed="0.3" />
                         </figure>
                         
                         
