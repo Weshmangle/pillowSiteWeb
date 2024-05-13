@@ -3,17 +3,17 @@ import  { Routes , Route } from 'react-router-dom'
 
 
 /**** Feuille de style CSS ******/
-import './stylesheet/App.css'
+import './stylesheets/App.css'
 /* Components */
-import './stylesheet/header-component.css'
-import './stylesheet/newsletter-component.css'
-import './stylesheet/footer-component.css'
+import './stylesheets/header-component.css'
+import './stylesheets/newsletter-component.css'
+import './stylesheets/footer-component.css'
 /* Pages */
-import './stylesheet/contact-page.css'
-import './stylesheet/login-page.css'
-import './stylesheet/studio-page.css'
-import './stylesheet/home-page.css'
-import './stylesheet/onegame-page.css'
+import './stylesheets/contact-page.css'
+import './stylesheets/login-page.css'
+import './stylesheets/studio-page.css'
+import './stylesheets/home-page.css'
+import './stylesheets/onegame-page.css'
 
 
 

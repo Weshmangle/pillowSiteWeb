@@ -42,11 +42,32 @@ const Home = () => {
         // Scroll remis à zéro
         scrollTo(0,0)
         
+        
+        /* Fonction qui fait défiler les images du slider automatiquement */
         const intervalId = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gamesArray.length)
         }, 3000)
         
-        return () => clearInterval(intervalId)
+        
+        /* Fonction pour l'effet parallax */
+        const handleScroll = () => {
+            
+            const yPos = window.scrollY
+            const parallaxElements = document.querySelectorAll('.home-parallax-img')
+            
+            parallaxElements.forEach(element => {
+                const scrollSpeed = parseFloat(element.getAttribute('data-scroll-speed'))
+                element.style.transform = `translateY(${yPos * scrollSpeed}px)`
+            })
+            
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            clearInterval(intervalId)
+        }
         
     }, [isSlided])
     
@@ -71,18 +92,22 @@ const Home = () => {
         <main className="home-page-main container">
             
             
-            {/****** Slider d'en-tête de la page d'accueil ********/}
+            {/*** Slider d'en-tête de la page d'accueil ***/}
             <header className="home-page-header">
                 
-                <figure>
-                    <img onClick={() => goToGame(gamesArray[currentImageIndex].id)} className={`img-home-slider home-page-article-img`} src={gamesArray[currentImageIndex].img} alt={gamesArray[currentImageIndex].title} />
+                <figure className="home-parallax-img-container">
+                    
+                    {/**** Image de fond ***/}
+                    <img onClick={() => goToGame(gamesArray[currentImageIndex].id)} className={`img-home-slider home-page-article-img home-parallax-img`} src={gamesArray[currentImageIndex].img} alt={gamesArray[currentImageIndex].title} data-scroll-speed="0.4" />
                     
                     
+                    {/**** Titre du jeu ****/}
                     <h1 className={`home-page-header-title`}>{gamesArray[currentImageIndex].title}</h1>
                         
                     {/* <NavLink className="home-page-header-section-navlink" to="#">En savoir</NavLink> */}
                     
                     
+                    {/*** Boutons de navigation du slider ***/}
                     <div className="flex-cercle-slider">
                     {gamesArray.map((game) => (
                         <div onClick={() => seeThatGame(game.id)} key={game.id} className={game.id === currentImageIndex ? "current-img-cercle-slider" : "cercle-slider"}></div>

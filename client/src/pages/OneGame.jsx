@@ -60,8 +60,9 @@ const OneGame = () => {
     
     useEffect(() => {
         
-        // Scroll remis à zéro
+        /* Scroll remis à zéro */
         scrollTo(0,0)
+        
         
         /* Fonction pour l'effet parallax */
         const handleScroll = () => {
@@ -88,29 +89,43 @@ const OneGame = () => {
     
     return (
         <main className="onegame-page-main container">
+        
+        
+            {/***** En-tête de la page *****/}
             <header className="onegame-page-header">
                 <figure className="onegame-page-figure parallax-img-container">
                     <img className="img-responsive parallax-img onegame-header-img" src={selectedGame.img} alt={`image de ${selectedGame.title}`} data-scroll-speed="0.5" />
+                    <h1 className="onegame-page-selectedgame-title">{selectedGame.title}</h1>
                 </figure>
             </header>
             
+            
+            {/******* Contenu principal *****/}
             <article className="onegame-page-article">
-                <h1 className="onegame-page-selectedgame-title">{selectedGame.title}</h1>
+            
                 
+                
+                {/***** Sections de présentation du jeu *******/}
                 {selectedGame.gameFootage.map((oneSection, index) => (
                     <section className={evenNumber.test(index) ? `onegame-page-selectedgame` : `onegame-page-selectedgame-inverted`} key={index}>
+                    
+                    
+                        {/***** Bloc avec image du jeu *****/}
                         <figure className="onegame-page-selectedgame-figure">
                             <img className="img-responsive" src={oneSection} alt="" />
                         </figure>
                         
+                        
+                        {/*** Bloc avec le texte descriptif ***/}
                         <section className="onegame-page-selectedgame-section">
                             <h1 className="onegame-page-section-title">{selectedGame.paragTitle[index]}</h1>
                             <p>{selectedGame.paragText[index]}</p>
                         </section>
+                        
                     </section>
                 ))}
+                
             </article>
-            
             
         </main>
     )

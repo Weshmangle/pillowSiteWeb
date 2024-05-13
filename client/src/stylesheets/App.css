@@ -6,6 +6,7 @@ body {
 	font-weight: 400;
 	line-height: 1.5;
 	color: #FFFFFF;
+	background: #171717;
 }
 
 html {
@@ -52,6 +53,18 @@ a {
 
 fieldset {
   border: 0;
+}
+
+/* ANIMATIONS */
+@keyframes text-reveal {
+  from {
+    transform:scale(0);
+    opacity:0;
+  }
+  to {
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 

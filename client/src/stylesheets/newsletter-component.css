@@ -92,4 +92,12 @@
       margin-left: auto;
       margin-right: auto;
     }
+    
+    .newsletter-article h2,
+    .newsletter-article p {
+      animation: text-reveal 5s ease-in-out;
+      animation-timeline: view();
+      animation-range-start: cover 0%;
+      animation-range-end: contain 50%;
+    }
 }
