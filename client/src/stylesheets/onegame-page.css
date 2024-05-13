@@ -28,6 +28,17 @@
     object-fit: cover;
 }
 
+.onegame-page-figure::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
 .game-parallax-img-container {
     position: relative;
     overflow: hidden;
@@ -52,7 +63,7 @@
 
 .onegame-page-article {
     text-align: center;
-    padding: 5rem 0 0 0;
+    padding: 1rem 0 0 0;
     background: #171717;
 }
 
@@ -90,6 +101,7 @@
     left: 65%;
     width: 100%;
     transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 

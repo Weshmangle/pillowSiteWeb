@@ -1,0 +1,61 @@
+.studio-page-main {
+    text-align: center;
+    padding: 0;
+}
+
+.studio-page-article {
+    padding: 3rem 0 6rem 0;
+}
+
+.studio-page-section {
+    margin-bottom: 5rem;
+}
+
+.studio-page-paragraph {
+    text-align: left;
+    line-height: 1.7;
+    padding: 0 1rem 4rem 1rem;
+}
+
+
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    .studio-page-paragraph {
+        padding: 0 2rem 4rem 2rem;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    .studio-page-article {
+        padding: 6rem 0 6rem 0;
+    }
+    
+    .studio-page-section {
+        padding: 4rem 0 4rem 0;
+    }
+    
+    .studio-page-paragraph {
+        line-height: 2;
+        padding: 0 20rem 0 20rem;
+    }
+    
+    .studio-page-section h2,
+    .studio-page-section p {
+        animation: text-reveal 3s ease-in-out;
+        animation-timeline: view();
+        animation-range-start: cover 0%;
+        animation-range-end: contain 65%;
+    }
+    
+    .studio-page-section:first-of-type h2,
+    .studio-page-section:first-of-type p {
+        animation: text-reveal 1s ease-in-out;
+    }
+    
+    .studio-page-article .studio-page-section:nth-child(even) {
+        background: black;
+    }
+}
