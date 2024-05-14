@@ -71,10 +71,6 @@
     margin: 0;
 }
 
-.onegame-page-selectedgame-inverted {
-    margin: 0;
-}
-
 .onegame-page-selectedgame-figure {
     margin: 0;
     line-height: 0;
@@ -132,8 +128,13 @@
 /**********  DESKTOP **************/
 @media screen and (min-width:900px) {
     .onegame-page-selectedgame {
-        margin: 0;
         display: flex;
+        background: black;
+    }
+    
+    .onegame-page-article .onegame-page-selectedgame:nth-child(even) {
+        display: flex;
+        flex-direction: row-reverse;
         background: black;
     }
     
@@ -150,11 +151,9 @@
     }
     
     .onegame-page-selectedgame-inverted {
-        margin: 0;
-        display: flex;
-        flex-direction: row-reverse;
-        background: black;
+        
     }
+    
     
     .parallax-img-container {
         height: 80vh;

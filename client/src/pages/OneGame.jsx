@@ -53,9 +53,6 @@ const OneGame = () => {
     
     const selectedGame = gamesArray[gameId]
     
-    /* regex pour chiffre paire */
-    const evenNumber = /^-?\d*[02468]$/
-    
 
     
     useEffect(() => {
@@ -107,7 +104,7 @@ const OneGame = () => {
                 
                 {/***** Sections de présentation du jeu *******/}
                 {selectedGame.gameFootage.map((oneSection, index) => (
-                    <section className={evenNumber.test(index) ? `onegame-page-selectedgame` : `onegame-page-selectedgame-inverted`} key={index}>
+                    <section className="onegame-page-selectedgame" key={index}>
                     
                     
                         {/***** Bloc avec image du jeu *****/}
