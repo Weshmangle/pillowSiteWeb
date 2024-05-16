@@ -79,8 +79,34 @@
   margin-top:5rem;
 }
 
-.burger-menu-navlink:hover {
+.burger-menu-games-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.burger-menu-games-list li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding: 2rem;
+}
+
+.display-none {
+  display: none;
+}
+
+.caret {
   color: #950C0C;
+  display: inline-block;
+  transition: transform 0.8s ease;
+}
+
+.rotate-caret {
+  transform: rotate(180deg);
+}
+
+.header-flex .figure {
+  cursor: pointer;
 }
 
 
@@ -98,5 +124,56 @@
   
   .header-navbar {
     display: block;
+  }
+  
+  .header-navlink-games-dropdown {
+    position: relative;  
+    text-decoration: none;
+    padding: 1rem;
+    color: #FFFFFF;
+    margin: 1rem;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navlink-games-dropdown:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  
+  .header-navbar-games-list {
+    z-index: 1000;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    background: #171717;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  
+  .header-navlink-games-dropdown:hover .header-navbar-games-list {
+    display: block;
+  }
+  
+  .header-navbar-games-list li {
+    white-space: nowrap;
+  }
+  
+  .header-navbar-games-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-navbar-games-list li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 2rem;
+  }
+  
+  .caret {
+    color: white;
   }
 }

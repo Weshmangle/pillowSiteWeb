@@ -5,15 +5,15 @@ import  { Routes , Route } from 'react-router-dom'
 /**** Feuille de style CSS ******/
 import './stylesheets/App.css'
 /* Components */
-import './stylesheets/header-component.css'
-import './stylesheets/newsletter-component.css'
-import './stylesheets/footer-component.css'
+import './stylesheets/components/header-component.css'
+import './stylesheets/components/newsletter-component.css'
+import './stylesheets/components/footer-component.css'
 /* Pages */
-import './stylesheets/contact-page.css'
-import './stylesheets/login-page.css'
-import './stylesheets/studio-page.css'
-import './stylesheets/home-page.css'
-import './stylesheets/onegame-page.css'
+import './stylesheets/pages/contact-page.css'
+import './stylesheets/pages/login-page.css'
+import './stylesheets/pages/studio-page.css'
+import './stylesheets/pages/home-page.css'
+import './stylesheets/pages/onegame-page.css'
 
 
 
