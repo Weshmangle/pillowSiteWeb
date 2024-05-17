@@ -3,22 +3,6 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     
-    firstName : {
-        type : String,
-        required : true,
-        minLength : 2,
-        maxLength : 25,
-        trim : true
-    },
-    
-    lastName : {
-        type : String,
-        required : true,
-        minLength : 2,
-        maxLength : 25,
-        trim : true
-    },
-    
     username : {
         type : String,
         unique : true,
@@ -44,12 +28,6 @@ const userSchema = new mongoose.Schema({
         minLength : 8,
         maxLength : 300,
         trim : true
-    },
-    
-    profilPicture : {
-        type : String,
-        required : true,
-        default : "user-solid.svg"
     },
     
     role : {
