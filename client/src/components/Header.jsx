@@ -132,6 +132,8 @@ const Header = () => {
             {/******** Navbar desktop ****************/}
             <nav className="header-navbar">
                 
+                <NavLink className="header-navlink" to="/" >Accueil</NavLink>
+                
                 {user && user.userToken ? (
                     <>
                         <NavLink className="header-navbar-dashboards-dropdown" to="#"
@@ -172,7 +174,6 @@ const Header = () => {
                             
                             {/****** Menu déroulant autres pages ******/}
                             <ul className={`${isPagesDropdownOpen ? 'header-navbar-pages-list' : 'display-none'}`}>
-                                <li><NavLink onClick={handleLinkClick} to="/" >Accueil</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="/studio" >Studio</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="/contact" >Contact</NavLink></li>
                             </ul>
@@ -193,7 +194,6 @@ const Header = () => {
                 ) : (
                 
                     <>  
-                        <NavLink className="header-navlink" to="/" >Accueil</NavLink>
                         <NavLink
                         className="header-navlink-games-dropdown" to="#" 
                         onMouseEnter={() => setIsDropdownOpen(true)}
@@ -229,10 +229,12 @@ const Header = () => {
             {burgerMenu && (
             
                 <nav className="burger-menu">
-            
+                    
+                     <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/" >Accueil</NavLink>
+                     
                     {user && user.userToken ? (
                         <>  
-                        
+                            
                             {/****** Menu déroulant dashboards ******/}
                             <NavLink onClick={toggleDashboardsDropdown} className="burger-menu-navlink" to="#">
                                 Dashboards <i className={`caret fa-solid fa-chevron-down ${dashboardsDropdown ? "rotate-caret" : ""}`}></i>
@@ -264,7 +266,6 @@ const Header = () => {
                                 Autres pages <i className={`caret fa-solid fa-chevron-down ${pagesDropdown ? "rotate-caret" : ""}`}></i>
                                 
                                 <ul className={`burger-menu-dropdown-list ${pagesDropdown ? 'header-navbar-pages-list' : 'display-none'}`}>
-                                    <li><NavLink onClick={toggleBurgerMenu} to="/" >Accueil</NavLink></li>
                                     <li><NavLink onClick={toggleBurgerMenu} to="/studio" >Studio</NavLink></li>
                                     <li><NavLink onClick={toggleBurgerMenu} to="/contact" >Contact</NavLink></li>
                                 </ul>
@@ -275,7 +276,6 @@ const Header = () => {
                         </>
                     ) : (
                         <>
-                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/" >Accueil</NavLink>
                             <NavLink onClick={toggleDropdown} className="burger-menu-navlink" to="#">
                                 Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
                                 
