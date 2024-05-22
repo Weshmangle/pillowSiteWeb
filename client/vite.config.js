@@ -6,7 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
       host: true,
-      port: 3000
-    //   proxy: { "/api": {target: "votreide:port", changeOrigin: true}}
+      port: 3000,
+      proxy: {
+        "/api": {
+          target: "http://amadoudrame.ide.3wa.io:9000",
+          changeOrigin: true
+        }
+      }
     } 
 })

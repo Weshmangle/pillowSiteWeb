@@ -1,14 +1,21 @@
 import { useState , useEffect } from 'react'
 import { NavLink , useNavigate } from 'react-router-dom'
+import {useAuth} from '../context/AuthContext'
 
 const Header = () => {
     
+    const {user, logout} = useAuth()
     const navigate = useNavigate()
     
     const [burgerMenu, setBurgerMenu] = useState(false)
     const [burgerLineAnimation, setBurgerLineAnimation] = useState("")
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [isLogoutDropdownOpen, setIsLogoutDropdownOpen] = useState(false)
+    const [isDashboardDropdownOpen, setIsDashboardDropdownOpen] = useState(false)
+    const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false)
     const [burgerDropdown, setBurgerDropdown] = useState(false)
+    const [dashboardsDropdown, setDashboardsDropdown] = useState(false)
+    const [pagesDropdown, setPagesDropdown] = useState(false)
     
     const gamesArray = [
         {
@@ -86,12 +93,30 @@ const Header = () => {
     /* Fonction qui fait disparaitre le menu déroulant des jeux */
     const handleLinkClick = () => {
         setIsDropdownOpen(false)
+        setIsPagesDropdownOpen(false)
     }
     
     
     /* Fonction qui ferme et ouvre le menu déroulant dans le menu burger */
     const toggleDropdown = () => {
         setBurgerDropdown(!burgerDropdown)
+    }
+    
+    const toggleDashboardsDropdown = () => {
+        setDashboardsDropdown(!dashboardsDropdown)
+    }
+    
+    const togglePagesDropdown = () => {
+        setPagesDropdown(!pagesDropdown)
+    }
+    
+    
+    /* Fonction qui appelle la fonction la fonction de déconnexion du context */
+    const handleLogout = () => {
+        logout()
+        setBurgerMenu(false)
+        setBurgerLineAnimation("")
+        setIsLogoutDropdownOpen(false)
     }
     
     
@@ -106,24 +131,89 @@ const Header = () => {
             
             {/******** Navbar desktop ****************/}
             <nav className="header-navbar">
-                <NavLink className="header-navlink" to="/" >Accueil</NavLink>
                 
-                {/****** Menu déroulant ******/}
-                <NavLink
-                className="header-navlink-games-dropdown" to="#" 
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}>
-                    Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
-                    <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
-                        {gamesArray.map((oneGame) => (
-                            <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
-                        ))}
-                    </ul>
-                </NavLink>
+                {user && user.userToken ? (
+                    <>
+                        <NavLink className="header-navbar-dashboards-dropdown" to="#"
+                        onMouseEnter={() => setIsDashboardDropdownOpen(true)}
+                        onMouseLeave={() => setIsDashboardDropdownOpen(false)}>
+                            Dashboards <i className={`caret fa-solid fa-chevron-down ${isDashboardDropdownOpen ? "rotate-caret" : ""}`}></i>
+                            
+                            {/****** Menu déroulant dashboards ******/}
+                            <ul className={`${isDashboardDropdownOpen ? 'header-navbar-dashboards-list' : 'display-none'}`}>
+                                {user.role === "super-admin" && (
+                                    <li><NavLink onClick={handleLinkClick} to="#">Administrateurs</NavLink></li>
+                                )}
+                                <li><NavLink onClick={handleLinkClick} to="#">Jeux</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="#">Contacts</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="#">Newsletters</NavLink></li>
+                            </ul>
+                        </NavLink>
+                        
+                        <NavLink
+                        className="header-navlink-games-dropdown" to="#" 
+                        onMouseEnter={() => setIsDropdownOpen(true)}
+                        onMouseLeave={() => setIsDropdownOpen(false)}>
+                            Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
+                            
+                            {/****** Menu déroulant jeux ******/}
+                            <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
+                                {gamesArray.map((oneGame) => (
+                                    <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                ))}
+                            </ul>
+                            
+                        </NavLink>
                 
-                <NavLink className="header-navlink" to="/studio" >Studio</NavLink>
-                <NavLink className="header-navlink" to="/contact" >Contact</NavLink>
-                <NavLink className="header-navlink" to="/connexion" >Se connecter</NavLink>
+                        <NavLink className="header-navbar-pages-dropdown" to="#"
+                        onMouseEnter={() => setIsPagesDropdownOpen(true)}
+                        onMouseLeave={() => setIsPagesDropdownOpen(false)}>
+                            Autres pages <i className={`caret fa-solid fa-chevron-down ${isPagesDropdownOpen ? "rotate-caret" : ""}`}></i>
+                            
+                            {/****** Menu déroulant autres pages ******/}
+                            <ul className={`${isPagesDropdownOpen ? 'header-navbar-pages-list' : 'display-none'}`}>
+                                <li><NavLink onClick={handleLinkClick} to="/" >Accueil</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="/studio" >Studio</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="/contact" >Contact</NavLink></li>
+                            </ul>
+                        </NavLink>
+                        
+                        <NavLink className="header-navlink-account-dropdown" to="#"
+                        onMouseEnter={() => setIsLogoutDropdownOpen(true)}
+                        onMouseLeave={() => setIsLogoutDropdownOpen(false)}>
+                            {user.username} <i className={`caret fa-solid fa-chevron-down ${isLogoutDropdownOpen ? "rotate-caret" : ""}`}></i>
+                            
+                            {/****** Menu déroulant déconnexion ******/}
+                            <ul className={`${isLogoutDropdownOpen ? 'header-navbar-account-list' : 'display-none'}`}>
+                                <li><NavLink onClick={() => handleLogout()} className="" to="#" >Se déconnecter</NavLink></li>
+                            </ul>
+                        </NavLink>
+                    </>
+                    
+                ) : (
+                
+                    <>  
+                        <NavLink className="header-navlink" to="/" >Accueil</NavLink>
+                        <NavLink
+                        className="header-navlink-games-dropdown" to="#" 
+                        onMouseEnter={() => setIsDropdownOpen(true)}
+                        onMouseLeave={() => setIsDropdownOpen(false)}>
+                            Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
+                            
+                            {/****** Menu déroulant jeux ******/}
+                            <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
+                                {gamesArray.map((oneGame) => (
+                                    <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                ))}
+                            </ul>
+                            
+                        </NavLink>
+                        <NavLink className="header-navlink" to="/studio" >Studio</NavLink>
+                        <NavLink className="header-navlink" to="/contact" >Contact</NavLink>
+                        <NavLink className="header-navlink" to="/connexion" >Se connecter</NavLink>
+                    </>
+                )}
+                
             </nav>
             
             
@@ -135,25 +225,76 @@ const Header = () => {
             </button>
             
             
-            {/***** Burger menu *****/}
+            {/************ Burger menu *************/}
             {burgerMenu && (
+            
                 <nav className="burger-menu">
-                    <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/" >Accueil</NavLink>
+            
+                    {user && user.userToken ? (
+                        <>  
+                        
+                            {/****** Menu déroulant dashboards ******/}
+                            <NavLink onClick={toggleDashboardsDropdown} className="burger-menu-navlink" to="#">
+                                Dashboards <i className={`caret fa-solid fa-chevron-down ${dashboardsDropdown ? "rotate-caret" : ""}`}></i>
+                                
+                                <ul className={`burger-menu-dropdown-list ${dashboardsDropdown ? 'display-dropdown' : 'display-none'}`}>
+                                    {user.role === "super-admin" && (
+                                        <li><NavLink onClick={toggleBurgerMenu} to="#">Administrateurs</NavLink></li>
+                                    )}
+                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Jeux</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Contacts</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Newsletters</NavLink></li>
+                                </ul>
+                            </NavLink>
+                            
+                            {/****** Menu déroulant jeux ******/}
+                            <NavLink onClick={toggleDropdown} className="burger-menu-navlink" to="#">
+                                Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
+                                
+                                <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
+                                    {gamesArray.map((oneGame) => (
+                                        <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                    ))}
+                                </ul>
+                                
+                            </NavLink>
+                            
+                            {/****** Menu déroulant autres pages ******/}
+                            <NavLink onClick={togglePagesDropdown} className="burger-menu-navlink" to="#">
+                                Autres pages <i className={`caret fa-solid fa-chevron-down ${pagesDropdown ? "rotate-caret" : ""}`}></i>
+                                
+                                <ul className={`burger-menu-dropdown-list ${pagesDropdown ? 'header-navbar-pages-list' : 'display-none'}`}>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/" >Accueil</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/studio" >Studio</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/contact" >Contact</NavLink></li>
+                                </ul>
+                            </NavLink>
+                            
+                            {/***** Bouton déconnexion *******/}
+                            <NavLink onClick={() => handleLogout()} className="burger-menu-navlink" to="#" >Se déconnecter</NavLink>
+                        </>
+                    ) : (
+                        <>
+                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/" >Accueil</NavLink>
+                            <NavLink onClick={toggleDropdown} className="burger-menu-navlink" to="#">
+                                Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
+                                
+                                {/****** Menu déroulant ******/}
+                                <ul className={`burger-menu-games-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
+                                    {gamesArray.map((oneGame) => (
+                                        <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                    ))}
+                                </ul>
+                                
+                            </NavLink>
+                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/studio" >Studio</NavLink>
+                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/contact" >Contact</NavLink>
+                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/connexion" >Se connecter</NavLink>
+                        </>
+                    )}
                     
-                    {/****** Menu déroulant burger ******/}
-                    <NavLink onClick={toggleDropdown} className="burger-menu-navlink" to="#">
-                        Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
-                        <ul className={`burger-menu-games-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
-                            {gamesArray.map((oneGame) => (
-                                <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
-                            ))}
-                        </ul>
-                    </NavLink>
-                    
-                    <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/studio" >Studio</NavLink>
-                    <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/contact" >Contact</NavLink>
-                    <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/connexion" >Se connecter</NavLink>
                 </nav>
+                
             )}
              
 

@@ -79,12 +79,12 @@
   margin-top:5rem;
 }
 
-.burger-menu-games-list {
+.burger-menu-dropdown-list {
   list-style: none;
   padding-left: 0;
 }
 
-.burger-menu-games-list li a {
+.burger-menu-dropdown-list li a {
   text-decoration: none;
   color: white;
   display: block;
@@ -108,7 +108,6 @@
 .header-flex .figure {
   cursor: pointer;
 }
-
 
 
 /********* MEDIA QUERIES *************/
@@ -160,6 +159,7 @@
   
   .header-navbar-games-list li {
     white-space: nowrap;
+    transition: all 0.4s ease-in-out;
   }
   
   .header-navbar-games-list li:hover {
@@ -175,5 +175,110 @@
   
   .caret {
     color: white;
+  }
+  
+  .header-navlink-account-dropdown {
+    position: relative;  
+    text-decoration: none;
+    padding: 1rem;
+    color: #FFFFFF;
+    margin: 1rem;
+    transition: all 0.4s ease-in-out;
+  } 
+  
+  .header-navbar-account-list {
+    z-index: 1000;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    background: #171717;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .header-navbar-account-list li {
+    white-space: nowrap;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-account-list li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 2rem;
+  }
+  
+  .header-navbar-account-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-navbar-dashboards-dropdown {
+    position: relative;  
+    text-decoration: none;
+    padding: 1rem;
+    color: #FFFFFF;
+    margin: 1rem;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-dashboards-list {
+    z-index: 1000;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    background: #171717;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .header-navbar-dashboards-list li {
+    white-space: nowrap;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-dashboards-list li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 2rem;
+  }
+  
+  .header-navbar-dashboards-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-navbar-pages-dropdown {
+    position: relative;  
+    text-decoration: none;
+    padding: 1rem;
+    color: #FFFFFF;
+    margin: 1rem;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-pages-list {
+    z-index: 1000;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    background: #171717;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .header-navbar-pages-list li {
+    white-space: nowrap;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-pages-list li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 2rem;
+  }
+  
+  .header-navbar-pages-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 }

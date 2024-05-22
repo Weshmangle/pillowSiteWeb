@@ -166,11 +166,95 @@ export const updateUserRole = async (req, res) => {
 
 
 /* Changer les informations du compte */
-
+export const updateAccount = async (req, res) => {
+    
+    try {
+        
+        const { userId } = req.params
+        
+        const { username , email } = req.body
+        
+        const updatedAccount = {}
+        
+        if (username && username.trim() !== "") {
+            
+            updatedAccount.username = username
+        
+        }
+        
+        if (email && email.trim()  !== "") {
+            
+            updatedAccount.email = email
+        
+        }
+        
+        await User.findByIdAndUpdate(userId, updatedAccount)
+        
+        res.status(200).json({message : "Compte mis à jour avec succès"})
+        
+    } catch (e) {
+        
+        res.status(401).json({message : "Echec de la mise à jour du compte"})
+        
+    }
+}
 
 
 /* Changer le mot de passe d'un utilisateur */
-
+export const updatePassword = async (req, res) => {
+    
+    try {
+        
+        const { userId } = req.params
+        const { newPWD , previousPWD } = req.body
+        
+        const checkPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{8,300}$/
+        
+        if (newPWD.trim() === ""
+        || previousPWD.trim() === ""
+        ) {
+            
+            return res.status(400).json({message : "Veuillez remplir tout les champs"})
+            
+        } else if (!checkPassword.test(previousPWD)) {
+            
+            return res.status(400).json({message : "Mot de passe invalide"})
+            
+        }
+        
+        const user = await User.findById(req.userId)
+        
+        const validPassword = await bcrypt.compareSync(previousPWD, user.password)
+        
+        if (!validPassword) {
+            return res.status(401).json({message : "Mot de passe actuel incorrect"})
+        }
+        
+        if (!checkPassword.test(newPWD)) {
+            return res.status(400).json({message : "Veuillez choisir un mot de passe plus sécurisé"})
+        } else if (newPWD === previousPWD) {
+            return res.status(400).json({message : "Veuillez choisir un nouveau mot de passe différent"})
+        }
+        
+        
+        const newPassword = {
+            password : newPWD
+        }
+        
+        const salt = await bcrypt.genSalt(10)
+        newPassword.password = await bcrypt.hash(newPWD, salt)
+        
+        
+        await User.findByIdAndUpdate(userId, newPassword)
+        
+        res.status(200).json({message : "Mot de passe mis à jour avec succès"})
+        
+    } catch (e) {
+        
+        res.status(401).json({message : "Impossible de mettre à jour le mot de passe"})
+        
+    }
+}
 
 
 /* Authentification avec le token */
