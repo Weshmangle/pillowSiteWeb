@@ -280,7 +280,7 @@ const Header = () => {
                                 Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
                                 
                                 {/****** Menu déroulant ******/}
-                                <ul className={`burger-menu-games-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
+                                <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
                                     {gamesArray.map((oneGame) => (
                                         <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
                                     ))}

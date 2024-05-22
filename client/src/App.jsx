@@ -36,13 +36,29 @@ const App = () => {
   return (
     <>
       <Header />
+      
       <Routes>
+      
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/connexion" element={<Login />} />
           <Route path="/studio" element={<Studio />} />
           <Route path="/game/:gameId" element={<OneGame />} />
+          
+          {/*<Route path="/" element={<PrivateRoute roles={["admin"]} />}>*/}
+              <Route path="admin">
+                   {/*<Route path="tableaudebord/contacts" element={<ContactsDashboards />} />*/}
+               </Route>
+           {/*</Route>*/}
+           
+           {/*<Route path="/" element={<PrivateRoute roles={["super-admin"]} />}>*/}
+              <Route path="super-admin">
+                   {/*<Route path="tableaudebord/admins" element={<AdminsDashboard />} />*/}
+               </Route>
+           {/*</Route>*/}
+           
       </Routes>
+      
       <Footer />
     </>
   )
