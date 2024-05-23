@@ -70,13 +70,19 @@ export const login = async (req, res) => {
         
         const userToken = jwt.sign({id : oneUser._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION})
         
+        const loginTime = new Date()
+        
+        oneUser.loginTime = loginTime
+        
+        await oneUser.save()
         
         res.status(200).json({
             id : oneUser._id,
             username : oneUser.username,
             role : oneUser.role,
             email : oneUser.email,
-            userToken
+            userToken,
+            loginTime
         })
         
     } catch (e) {

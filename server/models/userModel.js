@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
         required : true,
         enum : ["admin", "super-admin"],
         default : "admin"
+    },
+    
+    loginTime : {
+        type : Date
     }
     
     

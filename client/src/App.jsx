@@ -4,16 +4,20 @@ import  { Routes , Route } from 'react-router-dom'
 
 /**** Feuille de style CSS ******/
 import './stylesheets/App.css'
+
 /* Components */
 import './stylesheets/components/header-component.css'
 import './stylesheets/components/newsletter-component.css'
 import './stylesheets/components/footer-component.css'
+
 /* Pages */
 import './stylesheets/pages/contact-page.css'
 import './stylesheets/pages/login-page.css'
 import './stylesheets/pages/studio-page.css'
 import './stylesheets/pages/home-page.css'
 import './stylesheets/pages/onegame-page.css'
+// Page super-admin
+import './stylesheets/pages/admins/dashboards.css'
 
 
 
@@ -24,6 +28,8 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Studio from './pages/Studio'
 import OneGame from './pages/OneGame'
+// Super-admin
+import AdminsDashboard from './pages/super-admin/AdminsDashboard'
 
 /***** Composants *******/
 import Header from './components/Header'
@@ -53,7 +59,7 @@ const App = () => {
            
            {/*<Route path="/" element={<PrivateRoute roles={["super-admin"]} />}>*/}
               <Route path="super-admin">
-                   {/*<Route path="tableaudebord/admins" element={<AdminsDashboard />} />*/}
+                   <Route path="tableaudebord/admins" element={<AdminsDashboard />} />
                </Route>
            {/*</Route>*/}
            

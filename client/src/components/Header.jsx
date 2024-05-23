@@ -90,22 +90,27 @@ const Header = () => {
     }
     
     
-    /* Fonction qui fait disparaitre le menu déroulant des jeux */
+    /* Fonction qui fait disparaitre les menus déroulants desktop */
     const handleLinkClick = () => {
         setIsDropdownOpen(false)
         setIsPagesDropdownOpen(false)
+        setIsDashboardDropdownOpen(false)
     }
     
     
-    /* Fonction qui ferme et ouvre le menu déroulant dans le menu burger */
+    /* Fonction qui ferme et ouvre le menu déroulant jeux dans le menu burger */
     const toggleDropdown = () => {
         setBurgerDropdown(!burgerDropdown)
     }
     
+    
+    /* Fonction qui ferme et ouvre le menu déroulant dashboards dans le menu burger */
     const toggleDashboardsDropdown = () => {
         setDashboardsDropdown(!dashboardsDropdown)
     }
     
+    
+    /* Fonction qui ferme et ouvre le menu déroulant autres pages dans le menu burger */
     const togglePagesDropdown = () => {
         setPagesDropdown(!pagesDropdown)
     }
@@ -118,6 +123,7 @@ const Header = () => {
         setBurgerLineAnimation("")
         setIsLogoutDropdownOpen(false)
     }
+    
     
     
     return (
@@ -134,17 +140,18 @@ const Header = () => {
                 
                 <NavLink className="header-navlink" to="/" >Accueil</NavLink>
                 
+                {/***** Si utilisateur connecté... sinon... ****/}
                 {user && user.userToken ? (
                     <>
+                        {/****** Menu déroulant dashboards ******/}
                         <NavLink className="header-navbar-dashboards-dropdown" to="#"
                         onMouseEnter={() => setIsDashboardDropdownOpen(true)}
                         onMouseLeave={() => setIsDashboardDropdownOpen(false)}>
                             Dashboards <i className={`caret fa-solid fa-chevron-down ${isDashboardDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
-                            {/****** Menu déroulant dashboards ******/}
                             <ul className={`${isDashboardDropdownOpen ? 'header-navbar-dashboards-list' : 'display-none'}`}>
                                 {user.role === "super-admin" && (
-                                    <li><NavLink onClick={handleLinkClick} to="#">Administrateurs</NavLink></li>
+                                    <li><NavLink onClick={handleLinkClick} to="/super-admin/tableaudebord/admins">Administrateurs</NavLink></li>
                                 )}
                                 <li><NavLink onClick={handleLinkClick} to="#">Jeux</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="#">Contacts</NavLink></li>
@@ -152,13 +159,13 @@ const Header = () => {
                             </ul>
                         </NavLink>
                         
+                        {/****** Menu déroulant jeux ******/}
                         <NavLink
                         className="header-navlink-games-dropdown" to="#" 
                         onMouseEnter={() => setIsDropdownOpen(true)}
                         onMouseLeave={() => setIsDropdownOpen(false)}>
                             Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
-                            {/****** Menu déroulant jeux ******/}
                             <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
                                 {gamesArray.map((oneGame) => (
                                     <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
@@ -167,24 +174,24 @@ const Header = () => {
                             
                         </NavLink>
                 
+                        {/****** Menu déroulant autres pages ******/}
                         <NavLink className="header-navbar-pages-dropdown" to="#"
                         onMouseEnter={() => setIsPagesDropdownOpen(true)}
                         onMouseLeave={() => setIsPagesDropdownOpen(false)}>
                             Autres pages <i className={`caret fa-solid fa-chevron-down ${isPagesDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
-                            {/****** Menu déroulant autres pages ******/}
                             <ul className={`${isPagesDropdownOpen ? 'header-navbar-pages-list' : 'display-none'}`}>
                                 <li><NavLink onClick={handleLinkClick} to="/studio" >Studio</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="/contact" >Contact</NavLink></li>
                             </ul>
                         </NavLink>
                         
+                        {/****** Menu déroulant déconnexion ******/}
                         <NavLink className="header-navlink-account-dropdown" to="#"
                         onMouseEnter={() => setIsLogoutDropdownOpen(true)}
                         onMouseLeave={() => setIsLogoutDropdownOpen(false)}>
                             {user.username} <i className={`caret fa-solid fa-chevron-down ${isLogoutDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
-                            {/****** Menu déroulant déconnexion ******/}
                             <ul className={`${isLogoutDropdownOpen ? 'header-navbar-account-list' : 'display-none'}`}>
                                 <li><NavLink onClick={() => handleLogout()} className="" to="#" >Se déconnecter</NavLink></li>
                             </ul>
@@ -194,13 +201,13 @@ const Header = () => {
                 ) : (
                 
                     <>  
+                        {/****** Menu déroulant jeux ******/}
                         <NavLink
                         className="header-navlink-games-dropdown" to="#" 
                         onMouseEnter={() => setIsDropdownOpen(true)}
                         onMouseLeave={() => setIsDropdownOpen(false)}>
                             Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
-                            {/****** Menu déroulant jeux ******/}
                             <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
                                 {gamesArray.map((oneGame) => (
                                     <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
@@ -232,6 +239,7 @@ const Header = () => {
                     
                      <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/" >Accueil</NavLink>
                      
+                    {/***** Si utilisateur connecté... sinon... ****/}
                     {user && user.userToken ? (
                         <>  
                             
@@ -241,7 +249,7 @@ const Header = () => {
                                 
                                 <ul className={`burger-menu-dropdown-list ${dashboardsDropdown ? 'display-dropdown' : 'display-none'}`}>
                                     {user.role === "super-admin" && (
-                                        <li><NavLink onClick={toggleBurgerMenu} to="#">Administrateurs</NavLink></li>
+                                        <li><NavLink onClick={toggleBurgerMenu} to="/super-admin/tableaudebord/admins">Administrateurs</NavLink></li>
                                     )}
                                     <li><NavLink onClick={toggleBurgerMenu} to="#">Jeux</NavLink></li>
                                     <li><NavLink onClick={toggleBurgerMenu} to="#">Contacts</NavLink></li>
@@ -276,10 +284,10 @@ const Header = () => {
                         </>
                     ) : (
                         <>
+                            {/****** Menu déroulant jeux ******/}
                             <NavLink onClick={toggleDropdown} className="burger-menu-navlink" to="#">
                                 Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
                                 
-                                {/****** Menu déroulant ******/}
                                 <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
                                     {gamesArray.map((oneGame) => (
                                         <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>

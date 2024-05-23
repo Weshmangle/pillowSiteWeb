@@ -184,7 +184,8 @@
     color: #FFFFFF;
     margin: 1rem;
     transition: all 0.4s ease-in-out;
-  } 
+  }
+
   
   .header-navbar-account-list {
     z-index: 1000;
@@ -221,6 +222,10 @@
     transition: all 0.4s ease-in-out;
   }
   
+  .header-navbar-dashboards-dropdown:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
   .header-navbar-dashboards-list {
     z-index: 1000;
     position: absolute;
@@ -254,6 +259,10 @@
     color: #FFFFFF;
     margin: 1rem;
     transition: all 0.4s ease-in-out;
+  }
+  
+  .header-navbar-pages-dropdown:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .header-navbar-pages-list {
