@@ -116,14 +116,15 @@ const AdminsDashboard = () => {
                     ))}
                 </tbody>
                 
-                
             </table>
+            
             
             {/****** Modal de suppression d'utilisateur ******/}
             {showDeleteModal && (
                 <>
                     <div onClick={() => handleHideModal()} className="modal-background"></div>
                     <dialog className="modal" open>
+                        <i onClick={() => handleHideModal()} className="fa-solid fa-xmark modal-xmark"></i>
                         <p>Voulez-vous vraiment supprimer ce compte ?</p>
                         <button className="modal-confirm-button"  onClick={() => handleDelete()}>Confirmer</button> <button className="modal-cancel-button" onClick={() => handleHideModal()}>Annuler</button> 
                     </dialog>
