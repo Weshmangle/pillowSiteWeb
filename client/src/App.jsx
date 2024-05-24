@@ -30,6 +30,7 @@ import Studio from './pages/Studio'
 import OneGame from './pages/OneGame'
 // Super-admin
 import AdminsDashboard from './pages/super-admin/AdminsDashboard'
+import UpdateAdmin from './pages/super-admin/UpdateAdmin'
 
 /***** Composants *******/
 import Header from './components/Header'
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/studio" element={<Studio />} />
           <Route path="/game/:gameId" element={<OneGame />} />
           
+          
           {/*<Route path="/" element={<PrivateRoute roles={["admin"]} />}>*/}
               <Route path="admin">
                    {/*<Route path="tableaudebord/contacts" element={<ContactsDashboards />} />*/}
@@ -60,6 +62,7 @@ const App = () => {
            {/*<Route path="/" element={<PrivateRoute roles={["super-admin"]} />}>*/}
               <Route path="super-admin">
                    <Route path="tableaudebord/admins" element={<AdminsDashboard />} />
+                   <Route path="tableaudebord/admins/settings/:id" element={<UpdateAdmin />} />
                </Route>
            {/*</Route>*/}
            

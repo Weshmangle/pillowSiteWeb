@@ -20,10 +20,13 @@ export const register = async (req, res) => {
             return res.status(400).json({message : "Veuillez remplir tout les champs"})
         }
         
+        const loginTime = new Date()
+        
         const newUser = new User({
             username,
             email,
-            password
+            password,
+            loginTime
         })
         
         const salt = await bcrypt.genSalt(10)

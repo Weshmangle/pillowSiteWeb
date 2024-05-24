@@ -52,7 +52,7 @@ const AdminsDashboard = () => {
     }
     
     
-    // Fonction qui supprime un article
+    // Fonction qui supprime un compte
     const handleDelete = async () => {
         
         setUpdatePage(!updatePage)
@@ -75,11 +75,17 @@ const AdminsDashboard = () => {
     }
     
     
+    console.log(new Date().toLocaleDateString() === new Date().toLocaleDateString())
+    console.log(new Date().toLocaleDateString())
+    
     return (
         <main className="container dashboard-main">
             
             <h1>Administrateurs</h1>
             
+            <button className="dashboard-create-button">Créer un compte</button>
+            
+            {/******** Tableau des comptes admins *******/}
             <table className="dashboard-table">
                 
                 <thead>
@@ -96,19 +102,19 @@ const AdminsDashboard = () => {
                         <tr key={oneAdmin._id}>
                             <td style={{ color: user.id === oneAdmin._id ? 'lime' : 'white' }}>{oneAdmin.username}</td>
                             <td style={{ color: user.id === oneAdmin._id ? 'lime' : 'white' }}>{oneAdmin.role}</td>
-                            <td style={{ color: user.id === oneAdmin._id ? 'lime' : 'white' }}>{new Date().getDate() === new Date(oneAdmin.loginTime).getDate() ?
-                                "Aujourd'hui " :
-                                new Date().getDate() - 1 === new Date(oneAdmin.loginTime).getDate() ?
-                                    "Hier " : 
-                                    new Date().getDate() - 2 === new Date(oneAdmin.loginTime).getDate() ?
-                                        "Avant-hier " :
-                                        new Date().getDate() - 5 < new Date(oneAdmin.loginTime).getDate() ?
+                            <td style={{ color: user.id === oneAdmin._id ? 'lime' : 'white' }}>{new Date().toLocaleDateString() === new Date(oneAdmin.loginTime).toLocaleDateString() ?
+                                `Aujourd'hui à ${new Date(oneAdmin.loginTime).getHours().toString().padStart(2, '0')}:${new Date(oneAdmin.loginTime).getMinutes().toString().padStart(2, '0')}` :
+                                new Date().getDate() - 1 === new Date(oneAdmin.loginTime).getDate() && new Date().getMonth() === new Date(oneAdmin.loginTime).getMonth() &&  new Date().getFullYear() === new Date(oneAdmin.loginTime).getFullYear() ?
+                                    `Hier à ${new Date(oneAdmin.loginTime).getHours().toString().padStart(2, '0')}:${new Date(oneAdmin.loginTime).getMinutes().toString().padStart(2, '0')}` : 
+                                    new Date().getDate() - 2 === new Date(oneAdmin.loginTime).getDate() && new Date().getMonth() === new Date(oneAdmin.loginTime).getMonth() &&  new Date().getFullYear() === new Date(oneAdmin.loginTime).getFullYear() ?
+                                        `Avant-hier à ${new Date(oneAdmin.loginTime).getHours().toString().padStart(2, '0')}:${new Date(oneAdmin.loginTime).getMinutes().toString().padStart(2, '0')}` :
+                                        new Date().getDate() - 5 < new Date(oneAdmin.loginTime).getDate() && new Date().getMonth() === new Date(oneAdmin.loginTime).getMonth() &&  new Date().getFullYear() === new Date(oneAdmin.loginTime).getFullYear() ?
                                             new Date(oneAdmin.loginTime).toLocaleDateString('fr-FR', { weekday: 'long' }) + " " :
-                                            new Date(oneAdmin.loginTime).toLocaleDateString() + " "
-                                } à {new Date(oneAdmin.loginTime).getHours().toString().padStart(2, '0')}:{new Date(oneAdmin.loginTime).getMinutes().toString().padStart(2, '0')}</td>
+                                            `le ${new Date(oneAdmin.loginTime).getDate()} ${new Date(oneAdmin.loginTime).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) + " "} à ${new Date(oneAdmin.loginTime).getHours().toString().padStart(2, '0')}:${new Date(oneAdmin.loginTime).getMinutes().toString().padStart(2, '0')}`}
+                            </td>
                             <td>
                                 <div>
-                                    <NavLink className="dashboard-update-button">Modifier</NavLink>
+                                    <NavLink to={`/super-admin/tableaudebord/admins/settings/${oneAdmin._id}`} className="dashboard-update-button">Modifier</NavLink>
                                     {oneAdmin.role === "admin" && <NavLink onClick={() => showConfirmDeleteModal(oneAdmin._id)} className="dashboard-delete-button">Supprimer</NavLink>}
                                 </div>
                             </td>

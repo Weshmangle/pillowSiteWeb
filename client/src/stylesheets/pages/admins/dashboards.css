@@ -42,6 +42,45 @@ td {
 }
 
 .dashboard-delete-button:hover,
-.dashboard-update-button:hover {
+.dashboard-update-button:hover,
+.dashboard-create-button:hover {
     filter: brightness(0.6);
+    cursor: pointer;
+}
+
+.dashboard-create-button {
+    background: green;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    font-family: "SpaceMono" , sans-serif;
+    padding: 1rem;
+}
+
+/****** UPDATE ACCOUNT PAGE ******/
+.updateaccount-page-main {
+    text-align: center;
+}
+
+.updateaccount-page-update-button,
+.updateaccount-page-delete-button {
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    margin: 1rem;
+    border: 0;
+    color: white;
+}
+
+.updateaccount-page-update-button:hover,
+.updateaccount-page-delete-button:hover {
+    filter: brightness(0.6);
+    cursor: pointer;
+}
+
+.updateaccount-page-update-button {
+    background: blue;
+}
+
+.updateaccount-page-delete-button {
+    background: red;
 }
