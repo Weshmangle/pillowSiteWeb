@@ -171,7 +171,7 @@ const Header = () => {
                                 {user.role === "super-admin" && (
                                     <li><NavLink onClick={handleLinkClick} to="/super-admin/tableaudebord/admins">Administrateurs</NavLink></li>
                                 )}
-                                <li><NavLink onClick={handleLinkClick} to="#">Jeux</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="/admin/tableaudebord/jeux">Jeux</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="#">Contacts</NavLink></li>
                                 <li><NavLink onClick={handleLinkClick} to="#">Newsletters</NavLink></li>
                             </ul>

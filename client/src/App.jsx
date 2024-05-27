@@ -32,6 +32,8 @@ import NotFoundPge from './pages/NotFoundPage'
 // Super-admin
 import AdminsDashboard from './pages/super-admin/AdminsDashboard'
 import UpdateAdmin from './pages/super-admin/UpdateAdmin'
+// admin
+import GamesDashboard from './pages/admin/GamesDashboard'
 
 /***** Composants *******/
 import Header from './components/Header'
@@ -57,7 +59,7 @@ const App = () => {
           
           {/*<Route path="/" element={<PrivateRoute roles={["admin", "super-admin"]} />}>*/}
               <Route path="admin">
-                   {/*<Route path="tableaudebord/contacts" element={<ContactsDashboards />} />*/}
+                   <Route path="tableaudebord/jeux" element={<GamesDashboard />} />
                </Route>
            {/*</Route>*/}
            

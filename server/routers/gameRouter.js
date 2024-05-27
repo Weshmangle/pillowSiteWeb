@@ -10,7 +10,7 @@ const gameRouter = express.Router()
 /******** Routes **********/
 // post
 /* Créer un jeu */
-gameRouter.post("/newgame", uploadGamesImages.fields([
+gameRouter.post("/newgame", isLogged, isAuthorized(["admin", "super-admin"]), uploadGamesImages.fields([
     { name: 'mainImg', maxCount: 1 },
     { name: 'otherImg'},
 ]), createGame)
@@ -26,7 +26,7 @@ gameRouter.get("/getone/:gameId", getOneGame)
 // put
 
 // delete
-gameRouter.delete("/deleteone/:gameId", deleteOneGame)
+gameRouter.delete("/deleteone/:gameId", isLogged, isAuthorized(["admin", "super-admin"]), deleteOneGame)
 
 
 export default gameRouter
