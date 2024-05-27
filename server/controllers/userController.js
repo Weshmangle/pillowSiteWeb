@@ -11,11 +11,12 @@ export const register = async (req, res) => {
     
     try {
         
-        const { username, email, password } = req.body
+        const { username, email, password, role} = req.body
         
         if (username.trim() === ""
         || email.trim() === ""
         || password.trim() === ""
+        || role.trim() === ""
         ) {
             return res.status(400).json({message : "Veuillez remplir tout les champs"})
         }
@@ -26,7 +27,8 @@ export const register = async (req, res) => {
             username,
             email,
             password,
-            loginTime
+            loginTime,
+            role
         })
         
         const salt = await bcrypt.genSalt(10)
@@ -150,9 +152,21 @@ export const updateUserRole = async (req, res) => {
         
         const user = await User.findById(userId)
         
-        if (role === user.role) {
+        if (!user) {
+            
+            return res.status(404).json({ message: "Cet utilisateur n'existe pas" })
+            
+        } else if (role === user.role) {
             
             return res.status(400).json({message : "Cet utilisateur à déjà ce role"})
+            
+        } else if (user.role === "super-admin") {
+            
+            const otherSuperAdmin = await User.find({role : "super-admin"})
+            
+            if (otherSuperAdmin.length === 1) {
+                return res.status(401).json({message : "Vous devez nommer au moins 1 autre super administrateur"})
+            }
             
         }
         
@@ -164,7 +178,7 @@ export const updateUserRole = async (req, res) => {
         
         await User.findByIdAndUpdate(userId, newRole)
         
-        res.status(200).json({message : "Role mis à jour avec succès"})
+        res.status(200).json({message : "Rôle mis à jour avec succès"})
         
     } catch (e) {
         
@@ -215,43 +229,26 @@ export const updatePassword = async (req, res) => {
     try {
         
         const { userId } = req.params
-        const { newPWD , previousPWD } = req.body
+        const { password } = req.body
         
         const checkPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{8,300}$/
         
-        if (newPWD.trim() === ""
-        || previousPWD.trim() === ""
-        ) {
+        if (password.trim() === "") {
             
             return res.status(400).json({message : "Veuillez remplir tout les champs"})
             
-        } else if (!checkPassword.test(previousPWD)) {
+        } else if (!checkPassword.test(password)) {
             
-            return res.status(400).json({message : "Mot de passe invalide"})
-            
-        }
-        
-        const user = await User.findById(req.userId)
-        
-        const validPassword = await bcrypt.compareSync(previousPWD, user.password)
-        
-        if (!validPassword) {
-            return res.status(401).json({message : "Mot de passe actuel incorrect"})
-        }
-        
-        if (!checkPassword.test(newPWD)) {
             return res.status(400).json({message : "Veuillez choisir un mot de passe plus sécurisé"})
-        } else if (newPWD === previousPWD) {
-            return res.status(400).json({message : "Veuillez choisir un nouveau mot de passe différent"})
+            
         }
-        
         
         const newPassword = {
-            password : newPWD
+            password
         }
         
         const salt = await bcrypt.genSalt(10)
-        newPassword.password = await bcrypt.hash(newPWD, salt)
+        newPassword.password = await bcrypt.hash(password, salt)
         
         
         await User.findByIdAndUpdate(userId, newPassword)
@@ -288,6 +285,22 @@ export const deleteOneUser = async (req, res) => {
     try {
         
         const {userId} = req.params
+        
+        const user = await User.findById(userId)
+        
+        if (!user) {
+            
+            return res.status(404).json({ message: "Cet utilisateur n'existe pas" })
+            
+        } else if (user.role === "super-admin") {
+            
+            const otherSuperAdmin = await User.find({role : "super-admin"})
+            
+            if (otherSuperAdmin.length === 1) {
+                return res.status(401).json({message : "Vous devez nommer au moins 1 autre super administrateur"})
+            }
+            
+        }
         
         await User.findByIdAndDelete(userId)
         

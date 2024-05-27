@@ -1,6 +1,5 @@
 import express from 'express'
 import {register, login, getAllUsers, getOneUser, deleteOneUser, checkUser, updateUserRole, updateAccount, updatePassword} from '../controllers/userController.js'
-import uploadProfilPicture from '../middlewares/profilPictureMulter.js'
 import { isAuthorized , isLogged } from '../middlewares/auth.js'
 
 const userRouter = express.Router()
@@ -34,7 +33,7 @@ userRouter.put("/updaterole/:userId", isLogged, isAuthorized(["super-admin"]), u
 userRouter.put("/updateaccount/:userId", isLogged, updateAccount)
 
 /* Changer le role d'un compte */
-userRouter.put("/updatepassword/:userId", isLogged, updatePassword)
+userRouter.put("/updatepassword/:userId", isLogged, isAuthorized(["super-admin"]), updatePassword)
 
 
 // delete

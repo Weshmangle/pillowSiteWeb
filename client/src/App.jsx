@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import  { Routes , Route } from 'react-router-dom'
-
+import PrivateRoute from './PrivateRoute/PrivateRoute'
 
 /**** Feuille de style CSS ******/
 import './stylesheets/App.css'
@@ -28,6 +28,7 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Studio from './pages/Studio'
 import OneGame from './pages/OneGame'
+import NotFoundPge from './pages/NotFoundPage'
 // Super-admin
 import AdminsDashboard from './pages/super-admin/AdminsDashboard'
 import UpdateAdmin from './pages/super-admin/UpdateAdmin'
@@ -51,9 +52,10 @@ const App = () => {
           <Route path="/connexion" element={<Login />} />
           <Route path="/studio" element={<Studio />} />
           <Route path="/game/:gameId" element={<OneGame />} />
+          <Route path="*" element={<NotFoundPge />} />
           
           
-          {/*<Route path="/" element={<PrivateRoute roles={["admin"]} />}>*/}
+          {/*<Route path="/" element={<PrivateRoute roles={["admin", "super-admin"]} />}>*/}
               <Route path="admin">
                    {/*<Route path="tableaudebord/contacts" element={<ContactsDashboards />} />*/}
                </Route>

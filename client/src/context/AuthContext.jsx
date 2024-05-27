@@ -2,7 +2,7 @@ import { token } from "./token"
 import { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+import { toast } from 'react-toastify'
 
 export const AuthContext = createContext(null)
 
@@ -24,6 +24,8 @@ export const AuthProvider = ({children}) => {
         localStorage.setItem("userToken", JSON.stringify(userData.userToken))
         setUser(userData)
         setIsConnected(true)
+        
+        toast.success("Vous êtes connecté")
         
         setTimeout(() => {
             navigate("/")
@@ -51,6 +53,8 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem("userToken")
         setUser({})
         setIsConnected(false)
+        
+        toast.success("Vous êtes déconnecté")
         
         setTimeout(() => {
                 navigate("/")

@@ -15,9 +15,6 @@ td {
     border: 2px solid white;
 }
 
-.dashboard-table td {
-    text-align: center;
-}
 
 .dashboard-table thead {
     color: white;
@@ -83,4 +80,47 @@ td {
 
 .updateaccount-page-delete-button {
     background: red;
+}
+
+.admin-role-row {
+    display: none;
+}
+
+.admin-lastconnexion-row {
+    display: none;
+}
+
+.admin-action-row {
+    display: none;
+}
+    
+    
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:800px) {
+    
+    .admin-role-row {
+        display: table-cell;
+    }
+    
+    .admin-action-row {
+        display: table-cell;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:800px) {
+    
+    .admin-role-row {
+        display:table-cell;
+    }
+    
+    .admin-lastconnexion-row {
+        display:table-cell;
+    }
+    
+    .admin-action-row {
+        display:table-cell;
+    }
+
 }

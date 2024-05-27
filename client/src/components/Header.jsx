@@ -16,6 +16,7 @@ const Header = () => {
     const [burgerDropdown, setBurgerDropdown] = useState(false)
     const [dashboardsDropdown, setDashboardsDropdown] = useState(false)
     const [pagesDropdown, setPagesDropdown] = useState(false)
+    const [showLogoutModal, setShowLogoutModal] = useState(false)
     
     const gamesArray = [
         {
@@ -71,6 +72,15 @@ const Header = () => {
     }, [])
     
     
+    // Fonction qui ferme le modal
+    const handleHideModal = () => {
+        
+        setShowLogoutModal(false)
+        document.body.style.overflow = ""
+        
+    }
+    
+    
     /* Fonction qui fait apparaitre le menu mobile et tablette */
     const toggleBurgerMenu = () => {
         setBurgerMenu(!burgerMenu)
@@ -116,17 +126,25 @@ const Header = () => {
     }
     
     
+    /* Fonction qui fait apparaître le modal de confirmation de déconnexion */
+    const confirmLogout = () => {
+        setShowLogoutModal(true)
+        document.body.style.overflow = "hidden"
+    }
+    
     /* Fonction qui appelle la fonction la fonction de déconnexion du context */
     const handleLogout = () => {
         logout()
         setBurgerMenu(false)
         setBurgerLineAnimation("")
         setIsLogoutDropdownOpen(false)
+        handleHideModal()
     }
     
     
     
     return (
+        <>
         <header className="header-flex container">
             
             {/******** Logo Pillow Interactive ************/}
@@ -193,7 +211,7 @@ const Header = () => {
                             {user.username} <i className={`caret fa-solid fa-chevron-down ${isLogoutDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
                             <ul className={`${isLogoutDropdownOpen ? 'header-navbar-account-list' : 'display-none'}`}>
-                                <li><NavLink onClick={() => handleLogout()} className="" to="#" >Se déconnecter</NavLink></li>
+                                <li><NavLink onClick={() => confirmLogout()} className="" to="#" >Se déconnecter</NavLink></li>
                             </ul>
                         </NavLink>
                     </>
@@ -280,7 +298,7 @@ const Header = () => {
                             </NavLink>
                             
                             {/***** Bouton déconnexion *******/}
-                            <NavLink onClick={() => handleLogout()} className="burger-menu-navlink" to="#" >Se déconnecter</NavLink>
+                            <NavLink onClick={() => confirmLogout()} className="burger-menu-navlink" to="#" >Se déconnecter</NavLink>
                         </>
                     ) : (
                         <>
@@ -307,6 +325,22 @@ const Header = () => {
              
 
         </header>
+        
+        {/***** Modal de confirmation de modification de rôle ***/}
+        {showLogoutModal && (
+            <>
+                <div onClick={() => handleHideModal()} className="modal-background"></div>
+                <dialog className="modal" open>
+                    <i onClick={() => handleHideModal()} className="fa-solid fa-xmark modal-xmark"></i>
+                    <p>Voulez-vous vraiment vous déconnecter ?</p>
+                    
+                    <button className="modal-confirm-button"  onClick={() => handleLogout()}>Oui</button> 
+                    <button className="modal-cancel-button" onClick={() => handleHideModal()}>Non</button>
+
+                </dialog>
+            </>
+        )}
+        </>
     )
 }
 

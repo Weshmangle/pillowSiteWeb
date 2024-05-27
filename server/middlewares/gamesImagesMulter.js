@@ -15,24 +15,19 @@ const fileTypeCheck = (file, cb) => {
     }
 }
 
-const profilPictureStorage = multer.diskStorage({
+const gamesImagesStorage = multer.diskStorage({
     
-    destination: "./public/profilPicture",
+    destination: "./public/gamesImages",
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${(file.originalname.split(" ")).join("_")}`)
     }
 })
 
 
-const sizeLimits = 3145728
 
-const uploadProfilPicture = multer({
+const uploadGamesImages = multer({
     
-    storage: profilPictureStorage,
-    
-    limits: {
-        fileSize : sizeLimits
-    },
+    storage: gamesImagesStorage,
     
     fileFilter: (req, file, cb) => {
         fileTypeCheck(file, cb)
@@ -41,4 +36,4 @@ const uploadProfilPicture = multer({
 
 
 
-export default uploadProfilPicture
+export default uploadGamesImages
