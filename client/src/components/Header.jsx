@@ -1,11 +1,15 @@
 import { useState , useEffect } from 'react'
 import { NavLink , useNavigate } from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
+import axios from 'axios'
+import { token } from "../context/token"
 
 const Header = () => {
     
     const {user, logout} = useAuth()
     const navigate = useNavigate()
+    
+    const [allGames, setAllGames] = useState([])
     
     const [burgerMenu, setBurgerMenu] = useState(false)
     const [burgerLineAnimation, setBurgerLineAnimation] = useState("")
@@ -18,56 +22,69 @@ const Header = () => {
     const [pagesDropdown, setPagesDropdown] = useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false)
     
-    const gamesArray = [
-        {
-            id : 0,
-            title : "Pirate Yacht 1",
-            summary: "",
-            img: "../../image1jeu1.jpg",
-            gameFootage: ["../../image2jeu1.jpg", "../../image3jeu1.jpg", "../../image4jeu1.jpg"],
-            paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
-            paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
-        },
-        {
-            id : 1,
-            title : "Pirate Yacht 2",
-            summary: "",
-            img: "../../image3jeu2.jpg",
-            gameFootage: ["../../image2jeu2.jpg", "../../image1jeu2.jpg", "../../image4jeu2.jpg"],
-            paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
-            paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
-        },
-        {
-            id : 2,
-            title : "Pirate Yacht 3",
-            summary: "",
-            img: "../../image2jeu3.jpg",
-            gameFootage: ["../../image1jeu3.jpg", "../../image3jeu3.jpg"],
-            paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
-            paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
-        },
-        {
-            id : 3,
-            title : "Pirate Yacht 4",
-            summary: "",
-            img: "../../image2jeu4.jpg",
-            gameFootage: ["../../image1jeu4.jpg", "../../image3jeu4.jpg"],
-            paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
-            paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
-        }
-        ]
-    
+    // const allGames = [
+    //     {
+    //         id : 0,
+    //         title : "Pirate Yacht 1",
+    //         summary: "",
+    //         img: "../../image1jeu1.jpg",
+    //         gameFootage: ["../../image2jeu1.jpg", "../../image3jeu1.jpg", "../../image4jeu1.jpg"],
+    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
+    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
+    //     },
+    //     {
+    //         id : 1,
+    //         title : "Pirate Yacht 2",
+    //         summary: "",
+    //         img: "../../image3jeu2.jpg",
+    //         gameFootage: ["../../image2jeu2.jpg", "../../image1jeu2.jpg", "../../image4jeu2.jpg"],
+    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
+    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
+    //     },
+    //     {
+    //         id : 2,
+    //         title : "Pirate Yacht 3",
+    //         summary: "",
+    //         img: "../../image2jeu3.jpg",
+    //         gameFootage: ["../../image1jeu3.jpg", "../../image3jeu3.jpg"],
+    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
+    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
+    //     },
+    //     {
+    //         id : 3,
+    //         title : "Pirate Yacht 4",
+    //         summary: "",
+    //         img: "../../image2jeu4.jpg",
+    //         gameFootage: ["../../image1jeu4.jpg", "../../image3jeu4.jpg"],
+    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
+    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
+    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
+    //     }
+    //     ]
     
     useEffect(() => {
-        
-        // Scroll remis à zéro
+
         scrollTo(0,0)
+        document.body.style.overflow = ""
+        
+        const fetchAllGames = async () => {
+            
+            try {
+                
+                const serverRes = await axios.get(`/api/game/getall`, {headers : token()})
+                setAllGames(serverRes.data)
+                
+    
+            } catch (e) {}
+            
+        }
+        
+        fetchAllGames()
         
     }, [])
     
@@ -130,6 +147,7 @@ const Header = () => {
     const confirmLogout = () => {
         setShowLogoutModal(true)
         document.body.style.overflow = "hidden"
+        console.log(allGames)
     }
     
     /* Fonction qui appelle la fonction la fonction de déconnexion du context */
@@ -185,8 +203,8 @@ const Header = () => {
                             Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
                             <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
-                                {gamesArray.map((oneGame) => (
-                                    <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                {allGames.map((oneGame) => (
+                                    <li key={oneGame._id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame._id}`}>{oneGame.title}</NavLink></li>
                                 ))}
                             </ul>
                             
@@ -227,7 +245,7 @@ const Header = () => {
                             Jeux <i className={`caret fa-solid fa-chevron-down ${isDropdownOpen ? "rotate-caret" : ""}`}></i>
                             
                             <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
-                                {gamesArray.map((oneGame) => (
+                                {allGames.map((oneGame) => (
                                     <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
                                 ))}
                             </ul>
@@ -280,7 +298,7 @@ const Header = () => {
                                 Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
                                 
                                 <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
-                                    {gamesArray.map((oneGame) => (
+                                    {allGames.map((oneGame) => (
                                         <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
                                     ))}
                                 </ul>
@@ -307,7 +325,7 @@ const Header = () => {
                                 Jeux <i className={`caret fa-solid fa-chevron-down ${burgerDropdown ? "rotate-caret" : ""}`}></i>
                                 
                                 <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
-                                    {gamesArray.map((oneGame) => (
+                                    {allGames.map((oneGame) => (
                                         <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
                                     ))}
                                 </ul>

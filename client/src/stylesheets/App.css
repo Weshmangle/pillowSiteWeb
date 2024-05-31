@@ -1,4 +1,5 @@
-/* Fonts */
+/* CSS QUI CONCERNE PLUSIEURS PAGES A LA FOIS */
+/*************** Fonts *******************/
 @font-face {
     font-family: 'SpaceMono';
     src: url('../assets/fonts/Space_Mono/SpaceMono-Regular.ttf');
@@ -9,7 +10,7 @@
     src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
 }
 
-/*Généralités*/
+/************* Généralités *****************/
 body {
   margin: 0;
   font-size: 1.9rem;
@@ -76,7 +77,7 @@ fieldset {
   border: 0;
 }
 
-/* ANIMATIONS */
+/********* ANIMATIONS ****************/
 @keyframes text-reveal {
   from {
     transform:scale(0);
@@ -89,7 +90,7 @@ fieldset {
 }
 
 
-/***** MODAL *****/
+/**************** MODAL *****************/
 .modal-background {
     position: fixed;
     top: 0;
@@ -102,7 +103,7 @@ fieldset {
 
 .modal {
     background: #212121;
-    z-index: 100000;
+    z-index: 9000;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -164,16 +165,117 @@ fieldset {
 }
 
 
-/**** FORM INPUT ****/
-.password-visibility {
+/************ LIVE UPDATE *********************/
+.admin-update-pen {
   position: absolute;
-  right: 4%;
-  top: 40%;
+  top: 5%;
+  right: 5%;
+  z-index: 1000;
+}
+
+.admin-update-pen:hover {
+  transform: scale(1.5);
+  cursor: pointer;
+  color: blue;
+}
+
+.update-title-pen:hover {
+  color: blue;
   cursor: pointer;
 }
 
+/****************** FORMULAIRE **********************/
+.loginpage-input-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
 
-/****** FORM *******/
+.loginpage-input-label input {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.loginpage-input-label input:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.loginpage-input-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.loginpage-input-label input:focus~ label,
+.loginpage-input-label input:valid ~ label {
+  top: 15%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.loginpage-input-label input:focus {
+  border: 1px solid #950C0C;
+}
+
+
+.loginpage-textarea-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.loginpage-textarea-label textarea {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.loginpage-textarea-label textarea:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.loginpage-textarea-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.loginpage-textarea-label textarea:focus~ label,
+.loginpage-textarea-label textarea:valid ~ label {
+  top: 15%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.loginpage-textarea-label textarea:focus {
+  border: 1px solid #950C0C;
+}
+
 .role-fieldset {
   text-align: left;
   margin-top: 1rem;
@@ -187,11 +289,302 @@ fieldset {
   cursor: pointer;
 }
 
+.password-visibility {
+  position: absolute;
+  right: 4%;
+  top: 40%;
+  cursor: pointer;
+}
 
-/***** NOT FOUND PAGE ******/
+
+/*********** Formulaire live update **************/
+.liveupdatepage-confirm-button,
+.liveupdatepage-cancel-button {
+  padding: 1rem;
+  font-size: 1.6rem;
+  margin: 1rem;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.liveupdatepage-confirm-button:hover,
+.liveupdatepage-cancel-button:hover {
+  filter: brightness(0.6);
+}
+
+.liveupdatepage-confirm-button {
+  background: green;
+}
+
+.liveupdatepage-cancel-button {
+  background: red;
+}
+
+.liveupdate-gamepage-textarea-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.liveupdate-gamepage-textarea-label textarea {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+  height: 200px
+}
+
+.liveupdate-gamepage-textarea-label textarea:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.liveupdate-gamepage-textarea-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 45%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.liveupdate-gamepage-textarea-label textarea:focus~ label,
+.liveupdate-gamepage-textarea-label textarea:valid ~ label {
+  top: 5%;
+  font-size: 1.5rem;
+  background : black;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.liveupdate-gamepage-textarea-label textarea:focus {
+  border: 1px solid #950C0C;
+}
+
+.liveupdate-gamepage-input-label {
+  padding: 0;
+}
+
+.liveupdate-gamepage-input-label input {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.liveupdate-gamepage-input-label input:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.liveupdate-gamepage-input-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 21%;
+  left: 13%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.liveupdate-gamepage-input-label input:focus~ label,
+.liveupdate-gamepage-input-label input:valid ~ label {
+  top: 13%;
+  font-size: 1.5rem;
+  background : black;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.liveupdate-gamepage-input-label input:focus {
+  border: 1px solid #950C0C;
+}
+
+.liveupdatepage-title-cancel-button,
+.liveupdatepage-title-confirm-button {
+  padding: 1rem;
+  font-size: 1.6rem;
+  margin: 1rem;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+  
+.liveupdatepage-title-cancel-button {
+  z-index: 1000;
+  position: absolute;
+  top: 65%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: red;
+}
+
+.liveupdatepage-title-confirm-button {
+  z-index: 1000;
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  background: green;
+}
+
+.liveupdatepage-title-confirm-button:hover,
+.liveupdatepage-title-cancel-button:hover {
+  filter: brightness(0.6);
+}
+
+
+.liveupdate-gamepage-textarea-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.liveupdate-gamepage-title-input-label {
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.liveupdate-gamepage-title-input-label input {
+    background : transparent;
+    border: 1px solid gray;
+    color: #FFFFFF;
+    padding: 2.5rem;
+    border-radius:5px;
+    outline:none;
+    display:inline;
+    width: 100%;
+    font-size: 2rem;
+    margin: 1.5rem auto 1.5rem auto;
+}
+
+.liveupdate-gamepage-title-input-label input:focus {
+  border: 1px solid #950C0C;
+}
+
+.liveupdate-gamepage-input-file {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translate(-50%, -50%);
+    z-index: 20000;
+    background: #212121;
+    padding: 5rem;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.liveupdate-gamepage-mainImg-confirm-button {
+    z-index: 20000;
+    position: absolute;
+    top: 70%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    background: green;
+}
+
+.liveupdate-gamepage-mainImg-cancel-button {
+  position: absolute;
+  top: 70%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: red;
+  z-index: 20000;
+}
+
+.liveupdate-gamepage-mainImg-cancel-button,
+.liveupdate-gamepage-mainImg-confirm-button {
+  padding: 1rem;
+  font-size: 1.6rem;
+  margin: 1rem;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+  
+
+.liveupdate-gamepage-mainImg-confirm-button:hover,
+.liveupdate-gamepage-mainImg-cancel-button:hover {
+  filter: brightness(0.6);
+}
+
+.liveupdate-gamepage-other-input-file {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*width: 50%;*/
+    transform: translate(-50%, -50%);
+    z-index: 20000;
+    background: #212121;
+    padding: 5rem;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.liveupdate-gamepage-otherImg-cancel-button,
+.liveupdate-gamepage-otherImg-confirm-button {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    z-index: 20000;
+    padding: 1rem;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    border: 0;
+}
+
+.liveupdate-gamepage-otherImg-cancel-button {
+    top: 75%;
+    left: 55%;
+    background: red;
+}
+
+.liveupdate-gamepage-otherImg-confirm-button {
+    top: 75%;
+    left: 45%;
+    background: green;
+}
+
+.liveupdate-gamepage-otherImg-confirm-button:hover,
+.liveupdate-gamepage-otherImg-cancel-button:hover {
+  filter: brightness(0.6);
+}
+
+.file-edit-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/************ NOT FOUND PAGE *************/
 .notfoundpage-main {
   text-align: center;
 }
+
 
 /********* MEDIA QUERIES *************/
 /*********** TABLETTE **************/
@@ -210,6 +603,10 @@ fieldset {
     
     .modal {
       min-width: 50%;
-  }
+    }
+  
+    .loginpage-input-label label {
+      left: 5%;
+    }
 
 }

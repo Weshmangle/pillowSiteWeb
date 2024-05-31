@@ -1,5 +1,6 @@
 .header-navbar {
   display: none;
+  z-index: 3000;
 }
 
 .header-navlink {
@@ -66,7 +67,7 @@
   right:0;
   left:0;
   background: #171717;
-  z-index:14000;
+  z-index:4000;
   text-align:center;
   padding-top:5rem;
   border: 0;
