@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import  Tiny   from '../components/Tiny'
 import axios from 'axios'
 import { token } from "../context/token"
+import { toast } from 'react-toastify'
 
 const OneGame = () => {
     
@@ -144,9 +145,6 @@ const OneGame = () => {
         }
         
     }, [updatePage])
-    
-    
-    // setTimeout() Pour charger les images
     
     
     /* Fonction qui permet de télécharger des images */
@@ -418,6 +416,8 @@ const OneGame = () => {
             
             setIsLoading(true)
             
+            return toast.success(serverRes.data.message)
+            
         } catch (e) {
             
             return toast.error(e.response.data.message)
@@ -435,7 +435,7 @@ const OneGame = () => {
             
                 <figure className="onegame-page-figure parallax-img-container">
                     {user && user.userToken && <i onClick={toggleMainImgFileInput} className="fa-solid fa-pen admin-update-pen"></i>}
-                    <img loading="lazy" className="img-responsive parallax-img onegame-header-img" src={`${import.meta.env.VITE_API_URL}${editInputValue.mainImg}`} alt={`image principal du jeu ${editInputValue.title}`} data-scroll-speed="0.5" />}
+                    <img loading="lazy" className="img-responsive parallax-img onegame-header-img" src={`${import.meta.env.VITE_API_URL}${editInputValue.mainImg}`} alt={`image principal du jeu ${editInputValue.title}`} data-scroll-speed="0.5" />
                     
                     {showMainImgFileInput && (
                         <>

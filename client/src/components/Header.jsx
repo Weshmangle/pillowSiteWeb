@@ -21,7 +21,8 @@ const Header = () => {
     const [dashboardsDropdown, setDashboardsDropdown] = useState(false)
     const [pagesDropdown, setPagesDropdown] = useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false)
-    
+    const [isLoading, setIsLoading] = useState(true)
+     
     // const allGames = [
     //     {
     //         id : 0,
@@ -76,11 +77,13 @@ const Header = () => {
             
             try {
                 
-                const serverRes = await axios.get(`/api/game/getall`, {headers : token()})
+                const serverRes = await axios.get(`/api/game/getall`)
                 setAllGames(serverRes.data)
-                
+                setIsLoading(false)
     
-            } catch (e) {}
+            } catch (e) {
+                setIsLoading(false)
+            }
             
         }
         
@@ -246,7 +249,7 @@ const Header = () => {
                             
                             <ul className={`${isDropdownOpen ? 'header-navbar-games-list' : 'display-none'}`}>
                                 {allGames.map((oneGame) => (
-                                    <li key={oneGame.id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                    <li key={oneGame._id}><NavLink onClick={handleLinkClick} to={`/game/${oneGame._id}`}>{oneGame.title}</NavLink></li>
                                 ))}
                             </ul>
                             
@@ -299,7 +302,7 @@ const Header = () => {
                                 
                                 <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
                                     {allGames.map((oneGame) => (
-                                        <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                        <li key={oneGame._id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame._id}`}>{oneGame.title}</NavLink></li>
                                     ))}
                                 </ul>
                                 
@@ -326,7 +329,7 @@ const Header = () => {
                                 
                                 <ul className={`burger-menu-dropdown-list ${burgerDropdown ? "display-dropdown" : "display-none"}`}>
                                     {allGames.map((oneGame) => (
-                                        <li key={oneGame.id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame.id}`}>{oneGame.title}</NavLink></li>
+                                        <li key={oneGame._id}><NavLink onClick={toggleBurgerMenu} to={`/game/${oneGame._id}`}>{oneGame.title}</NavLink></li>
                                     ))}
                                 </ul>
                                 

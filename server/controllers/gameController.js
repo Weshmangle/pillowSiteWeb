@@ -41,8 +41,8 @@ export const createGame = async (req, res) => {
             `/gamesImages/${files.otherImg6[0].filename}`
         ]
         
-        const titleArray = paragTitle.split(`","`)
-        const textArray = paragText.split(`","`)
+        const titleArray = JSON.parse(paragTitle)
+        const textArray = JSON.parse(paragText)
         
         const newGame = new Game({
             title,
@@ -101,7 +101,7 @@ export const getOneGame = async (req, res) => {
 }
 
 
-/**************** POST **********************/
+/**************** PUT **********************/
 /* Modifier le jeu */
 export const updateGame = async (req, res) => {
     

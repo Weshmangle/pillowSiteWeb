@@ -9,6 +9,7 @@
 
 .studio-page-section {
     margin-bottom: 5rem;
+    position: relative;
 }
 
 .studio-page-paragraph {
@@ -20,6 +21,7 @@
 
 .studio-page-title {
     margin-top: 6rem;
+    position: relative;
 }
 
 .studio-page-team-flex {
@@ -30,8 +32,38 @@
 
 .studio-page-team-cards {
     margin: 1rem 2rem 5rem 2rem;
+    position: relative;
 }
 
+
+/********* UPDATE PEN ************/
+.admin-studio-update-pen {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.admin-studio-update-pen:hover {
+    transform: scale(1.5);
+    color: blue;
+}
+
+.studio-page-edit-title {
+    position: relative;
+}
+
+.admin-studio-update-memberImg-pen {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+    color: blue;
+}
+
+.admin-studio-update-memberImg-pen:hover {
+    transform: scale(1.5);
+}
 
 
 /********* MEDIA QUERIES *************/
@@ -105,5 +137,16 @@
         animation-range-start: cover 0%;
         animation-range-end: contain 40%;
     }
-
+    
+    .admin-studio-update-pen {
+        top: 10%;
+        right: 10%;
+    }
+    
+    
+    .admin-studio-update-memberImg-pen {
+        top: 5%;
+        right: 5%;
+    }
+    
 }
