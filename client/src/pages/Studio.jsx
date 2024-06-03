@@ -97,7 +97,7 @@ const Studio = () => {
     }
     
     
-    /* Fonction qui ferme le modal de confirmation de changement */
+    /* Fonction qui ferme le modal de confirmation de modification */
     const handleHideModal = () => {
         setShowConfirmEditModal(false)
         document.body.style.overflow = ""
@@ -160,21 +160,21 @@ const Studio = () => {
     }
     
     
+    /* Fonction qui affiche et cache l'input pour modifier le titre de la page */
+    const togglePageTitleInput = () => {
+        setEditPageTitle(!editPageTitle)
+        handleHideEditor()
+    }
+ 
+    
+    
+/********* Modifier les paragraphes de la page ********/
     /* Fonction qui affiche les inputs qui servent à modifier un paragraphe */
     const handleShowEditor = (index) => {
         setEditSectionIndex(index)
         setEditPageTitle(false)
         setEditInputValue(studioPageData)
         setEditCardIndex(null)
-    }
- 
-    
-    
-/********* Modifier les paragraphes de la page ********/
-    /* Fonction qui affiche et cache l'input pour modifier le titre de la page */
-    const togglePageTitleInput = () => {
-        setEditPageTitle(!editPageTitle)
-        handleHideEditor()
     }
     
     
