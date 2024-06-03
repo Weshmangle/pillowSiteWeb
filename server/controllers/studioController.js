@@ -107,14 +107,14 @@ export const updateStudio = async (req, res) => {
     
     try {
         
-        const { title, paragTitle, paragText, deleteTitleIndexes, deleteTextIndexes, deleteMemberIndexes } = req.body
+        const { title, teamMember, paragTitle, paragText, deleteTitleIndexes, deleteTextIndexes, deleteMemberIndexes } = req.body
         const files = req.files
         const { id } = req.params
 
         let titleArray = []
         let textArray = []
-        
-        
+        let memberArray = []
+
         if (paragTitle) {
             titleArray = JSON.parse(paragTitle)
         }
@@ -124,91 +124,65 @@ export const updateStudio = async (req, res) => {
         }
 
 
-        // Extraction des images des membres
-        const membersImgs = files ? files.map(file => `/membersImage/${file.filename}`) : []
-
-        // Suppression des titres et paragraphes spécifiés
-        if (deleteTitleIndexes) {
-            const indexesToDelete = JSON.parse(deleteTitleIndexes)
-            titleArray = titleArray.filter((_, index) => !indexesToDelete.includes(index))
-        }
-
-        if (deleteTextIndexes) {
-            const indexesToDelete = JSON.parse(deleteTextIndexes)
-            textArray = textArray.filter((_, index) => !indexesToDelete.includes(index))
-        }
-
-        // Extraire les membres de l'équipe depuis req.body
-        let teamMembersArray = Object.keys(req.body)
-            .filter(key => key.startsWith('teamMember'))
-            .reduce((acc, key) => {
-                const match = key.match(/teamMember\[(\d+)\]\.(name|role)/)
-                if (match) {
-                    const index = match[1]
-                    const field = match[2]
-                    if (!acc[index]) {
-                        acc[index] = {}
-                    }
-                    acc[index][field] = req.body[key]
-                }
-                return acc
-            }, [])
+        // Extraction des nouvelles images des membres de la req.files
+        const membersImgs = files ? files.reduce((acc, file) => {
             
+            const match = file.fieldname.match(/memberImg\[(\d+)\]/)
+            
+            if (match) {
+                
+                const index = match[1]
+                acc[index] = `/membersImage/${file.filename}`
+            
+            }
+            
+            return acc
+            
+        }, {}) : {}
 
-        // Suppression des membres spécifiés
-        if (deleteMemberIndexes) {
-            const indexesToDelete = JSON.parse(deleteMemberIndexes)
-            teamMembersArray = teamMembersArray.filter((_, index) => !indexesToDelete.includes(index))
-        }
 
         const objectId = new mongoose.Types.ObjectId(id)
         const studio = await Studio.findById(objectId)
+
 
         if (!studio) {
             return res.status(404).json({ message: "Document non trouvé" })
         }
 
-        // Mise à jour des champs
-        studio.title = title || studio.title;
+
+        studio.title = title || studio.title
         studio.paragTitle = titleArray.length > 0 ? titleArray : studio.paragTitle
         studio.paragText = textArray.length > 0 ? textArray : studio.paragText
 
 
-        // Mettre à jour les membres de l'équipe sans écraser les anciens membres
-        if (teamMembersArray.length > 0) {
+        if (teamMember) {
             
-            // Fusionner les images téléchargées avec les membres existants
-            teamMembersArray.forEach((member, index) => {
-                if (member) {
-                    member.memberImg = membersImgs[index] || member.memberImg
-                }
-            })
+            memberArray = JSON.parse(teamMember)
+            
+            if (memberArray.length > 0) {
+                
+                memberArray.forEach((member, index) => {
+                    
+                    if (member) {
+                        
+                        member.memberImg = membersImgs[index] || member.memberImg || (studio.teamMember[index] && studio.teamMember[index].memberImg)
+                    
+                    }
+                })
 
-            // Mettre à jour le tableau des membres
-            studio.teamMember = studio.teamMember.map((existingMember, index) => ({
-                ...existingMember,
-                ...(teamMembersArray[index] || {}),
-                memberImg: teamMembersArray[index] ? teamMembersArray[index].memberImg || existingMember.memberImg : existingMember.memberImg,
-            }))
-
-            // Ajouter de nouveaux membres si nécessaire
-            if (teamMembersArray.length > studio.teamMember.length) {
-                const newMembers = teamMembersArray.slice(studio.teamMember.length).map((member, index) => ({
-                    ...member,
-                    memberImg: membersImgs[studio.teamMember.length + index] || member.memberImg,
-                }))
-                studio.teamMember.push(...newMembers)
+                studio.teamMember = memberArray
             }
         }
+        
 
         await studio.save()
 
-        res.status(200).json({ message: "Mise à jour de la page studio réussie" })
+        return res.status(200).json({ message: "Mise à jour de la page studio réussie" })
    
     } catch (e) {
         
-        console.log(e);
-        res.status(400).json({ message: "Impossible de mettre à jour la page studio" })
+        console.log(e)
+        return res.status(400).json({ message: "Impossible de mettre à jour la page studio" })
     
     }
 }

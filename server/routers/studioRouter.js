@@ -20,7 +20,7 @@ studioRouter.get("/get/:id", getStudioPage)
 
 /************ put **************/
 /* Modifier la page studio */
-studioRouter.put("/update/:id", uploadTeamMemberImg.any(), updateStudio)
+studioRouter.put("/update/:id", isLogged, isAuthorized(["admin", "super-admin"]), uploadTeamMemberImg.any(), updateStudio)
 
 
 

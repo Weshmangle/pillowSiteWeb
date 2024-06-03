@@ -276,6 +276,58 @@ fieldset {
   border: 1px solid #950C0C;
 }
 
+
+
+
+.studiopage-textarea-label {
+  position: relative;
+  border:0;
+  padding:0;
+}
+
+.studiopage-textarea-label textarea {
+  background : transparent;
+  border: 1px solid gray;
+  color: #FFFFFF;
+  padding: 2.5rem;
+  border-radius:5px;
+  outline:none;
+  display:block;
+  width: 100%;
+  font-size: 2rem;
+  height: 50vh;
+  margin: 1.5rem auto 1.5rem auto;
+}
+
+.studiopage-textarea-label textarea:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.studiopage-textarea-label label {
+  position: absolute;
+  font-size: 1.8rem;
+  top : 48%;
+  left: 6%;
+  pointer-events:none;
+  transform: translateY(-50%);
+}
+
+.studiopage-textarea-label textarea:focus~ label,
+.studiopage-textarea-label textarea:valid ~ label {
+  top: 5%;
+  font-size: 1.5rem;
+  background : #212121;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.studiopage-textarea-label textarea:focus {
+  border: 1px solid #950C0C;
+}
+
+
+
+
 .role-fieldset {
   text-align: left;
   margin-top: 1rem;

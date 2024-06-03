@@ -36,6 +36,14 @@
 }
 
 
+.studio-page-edit-form {
+    width: 60%;
+    padding-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 /********* UPDATE PEN ************/
 .admin-studio-update-pen {
     position: absolute;
