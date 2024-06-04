@@ -13,7 +13,6 @@ const Login = () => {
         username : "",
         password : ""
     })
-    const [message, setMessage] = useState("")
     
     useEffect(() => {
         

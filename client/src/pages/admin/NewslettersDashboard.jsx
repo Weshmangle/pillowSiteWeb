@@ -40,27 +40,26 @@ const NewslettersDashboard = () => {
     }, [updatePage])
     
     
+    /*********** Suppression d'abonné *************/
+    // Fonction qui affiche le modal de suppression d'abonné
+    const showConfirmDeleteModal = (newsletterIndex) => {
+       setShowDeleteModal(true)
+       document.body.style.overflow = "hidden"
+       setItemsToDelete(newsletterIndex)
+   }
+   
+   
     // Fonction qui ferme les modales
-   const handleHideModal = () => {
+    const handleHideModal = () => {
         
         setShowDeleteModal(false)
         document.body.style.overflow = ""
         setItemsToDelete(null)
         
     }
-    
-    
-    /*********** Suppression d'abonné *************/
-   
-   // Fonction qui affiche le modal de suppression d'abonné
-   const showConfirmDeleteModal = (newsletterIndex) => {
-       setShowDeleteModal(true)
-       document.body.style.overflow = "hidden"
-       setItemsToDelete(newsletterIndex)
-   }
-   
 
-   // Fonction qui supprime un abonné
+
+    // Fonction qui supprime un abonné
     const handleDelete = async () => {
         
         try {
@@ -81,6 +80,7 @@ const NewslettersDashboard = () => {
             
         }
     }
+    
     
     
     return (
@@ -136,7 +136,8 @@ const NewslettersDashboard = () => {
                 
             </table>
             
-            {/****** Modal de confirmation de suppression d'un contact ******/}
+            
+            {/****** Modal de confirmation de suppression d'un abonné ******/}
             {showDeleteModal && (
                 <>
                     <div onClick={() => handleHideModal()} className="modal-background"></div>

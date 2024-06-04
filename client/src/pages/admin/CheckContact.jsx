@@ -34,11 +34,21 @@ const CheckContact = () => {
     
     
     return (
-        <main>
+        <main className="container dashboard-main">
+            
             <h1>Message de {contact.name}</h1>
-            <p>{contact.email}</p>
-            <p>Sujet du message : {contact.subject}</p>
-            <p>Message : {contact.message}</p>
+            
+            <section className="dashboard-contact-info">
+                <h2>Informations</h2>
+                <p>{contact.email}</p>
+                <p>Status : <span className={contact.status === "Traité" ? "dashboard-status-positive" : "dashboard-status-negative"}>{contact.status}</span></p>
+                <p>Sujet du message : {contact.subject}</p>
+            </section>
+            
+            <section>
+                <h1>Message :</h1>
+                <p>{contact.message}</p>
+            </section>
         </main>
     )
 }

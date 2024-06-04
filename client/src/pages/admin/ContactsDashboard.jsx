@@ -14,6 +14,15 @@ const ContactsDashboard = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [itemsToDelete, setItemsToDelete] = useState(null)
    
+    /************** Modifier le status du contact ****************/
+    const [inputValue, setInputValue] = useState({
+        status : ""
+    })
+    const [showUpdateModal, setShowUpdateModal] = useState(false)
+    const [showConfirmUpdateModal, setShowConfirmUpdateModal] = useState(false)
+    const [itemsToUpdate, setItemsToUpdate] = useState(null)
+   
+   
     const [updatePage, setUpdatePage] = useState(false)
     const [allContacts, setAllContacts] = useState([])
     
@@ -41,26 +50,93 @@ const ContactsDashboard = () => {
     
     
     // Fonction qui ferme les modales
-   const handleHideModal = () => {
+    const handleHideModal = () => {
         
         setShowDeleteModal(false)
+        setShowUpdateModal(false)
+        setShowConfirmUpdateModal(false)
         document.body.style.overflow = ""
         setItemsToDelete(null)
+        setItemsToUpdate(null)
         
     }
     
     
+    /****** Modification status de contact ********/
+    /* Fonction qui change la valeur des state en fonction 
+    des changements de valeur du formulaire */
+    const handleChange = (e) => {
+        
+        const { name, value } = e.target
+        
+        setInputValue({...inputValue, [name] : value})
+        
+    }
+    
+    
+    // Fonction qui affiche le modal de modification de status
+    const showUpdate = (contactIndex, currentStatus) => {
+           
+           setShowUpdateModal(true)
+           setShowConfirmUpdateModal(false)
+           document.body.style.overflow = "hidden"
+           setItemsToUpdate(contactIndex)
+           setInputValue({...inputValue, status : currentStatus})
+          
+       }
+    
+    
+    // Fonction qui affiche le modal de confirmation de modification de status
+    const showConfirm = (e) => {
+           e.preventDefault()
+           
+           setShowUpdateModal(false)
+           setShowConfirmUpdateModal(true)
+           document.body.style.overflow = "hidden"
+          
+       }
+    
+    
+    // Fonction qui modifie le status d'un contact
+    const handleUpdate = async () => {
+        
+        try {
+            
+            const { status } = inputValue
+            
+            if (status.trim() === "") {
+                return toast.error("Veuillez sélectionner le status de ce contact")
+            } else if (status === "Traité" && status === "Non traité") {
+                return toast.error("Veuillez sélectionner un status valide")
+            }
+            
+            const serverRes = await axios.put(`/api/contact/update/${itemsToUpdate}`, inputValue, {headers : token()})
+            
+            setUpdatePage(!updatePage)
+            handleHideModal()
+            
+            
+            return toast.success(serverRes.data.message)
+            
+            
+        } catch (e) {
+            
+            return toast.error(e.response.data.message)
+            
+        }
+    }
+    
+    
     /*********** Suppression de contact *************/
-   
-   // Fonction qui affiche le modal de suppression de contact
-   const showConfirmDeleteModal = (contactIndex) => {
+    // Fonction qui affiche le modal de suppression de contact
+    const showConfirmDeleteModal = (contactIndex) => {
        setShowDeleteModal(true)
        document.body.style.overflow = "hidden"
        setItemsToDelete(contactIndex)
    }
    
 
-   // Fonction qui supprime un contact
+    // Fonction qui supprime un contact
     const handleDelete = async () => {
         
         try {
@@ -81,6 +157,7 @@ const ContactsDashboard = () => {
             
         }
     }
+    
     
     
     return (
@@ -125,7 +202,7 @@ const ContactsDashboard = () => {
                             </td>
                             <td className="admin-action-row">
                                 <div>
-                                    <NavLink className="dashboard-update-button">Modifier</NavLink>
+                                    <NavLink onClick={() => showUpdate(oneContact._id, oneContact.status)} className="dashboard-update-button">Modifier</NavLink>
                                     <NavLink onClick={() => showConfirmDeleteModal(oneContact._id)} className="dashboard-delete-button">Supprimer</NavLink>
                                 </div>
                             </td>
@@ -137,6 +214,47 @@ const ContactsDashboard = () => {
                 </tbody>
                 
             </table>
+            
+            
+            {/***** Modal de modification de status d'un contact *****/}
+            {showUpdateModal && (
+                <>
+                    <div onClick={() => handleHideModal()} className="modal-background"></div>
+                    
+                    <dialog className="modal" open>
+                        <i onClick={() => handleHideModal()} className="fa-solid fa-xmark modal-xmark"></i>
+                        <h2>Mis à jour du status du contact</h2>
+                        
+                        <form onSubmit={showConfirm}>
+                            
+                              <label className="contactpage-select-label">Status du contact</label>
+                              <select value={inputValue.status} onChange={handleChange} name="status" className="contactpage-select">
+                                  <option value="Traité"> Traité </option>
+                                  <option value="Non traité"> Non traité </option>
+                              </select>
+                            
+                            <button className="modal-confirm-button" type="submit">Valider</button>
+                            
+                        </form>
+                        
+                    </dialog>
+                </>
+            )}
+            
+            
+            {/****** Modal de confirmation de modification de status ******/}
+            {showConfirmUpdateModal && (
+                <>
+                    <div onClick={() => handleHideModal()} className="modal-background"></div>
+                    
+                    <dialog className="modal" open>
+                        <i onClick={() => handleHideModal()} className="fa-solid fa-xmark modal-xmark"></i>
+                        <p>Voulez-vous vraiment modifier le status de ce contact ?</p>
+                        <button className="modal-confirm-button"  onClick={() => handleUpdate()}>Confirmer</button> <button className="modal-cancel-button" onClick={() => handleHideModal()}>Annuler</button> 
+                    </dialog>
+                </>
+            )}
+            
             
             {/****** Modal de confirmation de suppression d'un contact ******/}
             {showDeleteModal && (
@@ -150,6 +268,7 @@ const ContactsDashboard = () => {
                     </dialog>
                 </>
             )}
+            
             
         </main>
     )

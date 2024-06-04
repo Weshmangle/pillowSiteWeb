@@ -65,6 +65,11 @@ td {
 }
 
 
+.dashboard-contact-info {
+    text-align: left;
+}
+
+
 .dashboard-status-positive {
     color: lime;
 }

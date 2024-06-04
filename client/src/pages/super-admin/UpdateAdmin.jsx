@@ -435,7 +435,7 @@ const UpdateAdmin = () => {
             <button onClick={() => editRoleModal(id, account.role)} className="updateaccount-page-update-button">Modifier le rôle</button>
             <button onClick={() => editPWDModal(id)} className="updateaccount-page-update-button">Modifier le mot de passe</button>
             <button onClick={() => updateAccountModal()} className="updateaccount-page-update-button">Modifier le compte</button>
-            {user.id !== account._id && <button onClick={() => showConfirmDeleteModal(id)} className="updateaccount-page-delete-button">Supprimer le compte</button>}
+            {account.role === "admin" && <button onClick={() => showConfirmDeleteModal(id)} className="updateaccount-page-delete-button">Supprimer le compte</button>}
         </article>
         
         

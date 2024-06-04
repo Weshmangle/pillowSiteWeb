@@ -266,7 +266,7 @@ const AdminsDashboard = () => {
                             <td className="admin-action-row">
                                 <div>
                                     <NavLink to={`/super-admin/tableaudebord/admins/settings/${oneAdmin._id}`} className="dashboard-update-button">Modifier</NavLink>
-                                    {oneAdmin._id !== user.id && <NavLink onClick={() => showConfirmDeleteModal(oneAdmin._id)} className="dashboard-delete-button">Supprimer</NavLink>}
+                                    {oneAdmin.role !== "super-admin" && <NavLink onClick={() => showConfirmDeleteModal(oneAdmin._id)} className="dashboard-delete-button">Supprimer</NavLink>}
                                 </div>
                             </td>
                         </tr>
