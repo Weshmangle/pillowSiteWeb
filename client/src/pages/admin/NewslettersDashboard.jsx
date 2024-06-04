@@ -123,7 +123,6 @@ const NewslettersDashboard = () => {
                             </td>
                             <td className="admin-action-row">
                                 <div>
-                                    <NavLink className="dashboard-update-button">Modifier</NavLink>
                                     <NavLink onClick={() => showConfirmDeleteModal(oneSubscriber._id)} className="dashboard-delete-button">Supprimer</NavLink>
                                 </div>
                             </td>

@@ -14,10 +14,10 @@ newsletterRouter.post("/new", createSubscriber)
 
 /*********** get ****************/
 /* Récupérer tout les abonnés */
-newsletterRouter.get("/getall", getAllSubscribers)
+newsletterRouter.get("/getall", isLogged, isAuthorized(["admin", "super-admin"]), getAllSubscribers)
 
 /* Récupérer un seul abonné */
-newsletterRouter.get("/getone/:subscriberId", getOneSubscriber)
+newsletterRouter.get("/getone/:subscriberId", isLogged, isAuthorized(["admin", "super-admin"]), getOneSubscriber)
 
 
 /************ put **************/
@@ -27,7 +27,7 @@ newsletterRouter.get("/getone/:subscriberId", getOneSubscriber)
 
 /********** delete ***************/
 /* Supprimer un abonné */
-newsletterRouter.delete("/delete/:subscriberId", deleteSubscriber)
+newsletterRouter.delete("/delete/:subscriberId", isLogged, isAuthorized(["admin", "super-admin"]), deleteSubscriber)
 
 
 
