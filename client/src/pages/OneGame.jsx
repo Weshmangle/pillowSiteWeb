@@ -1,61 +1,15 @@
 import { useParams } from 'react-router-dom'
 import { useEffect , useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import  Tiny   from '../components/Tiny'
 import axios from 'axios'
 import { token } from "../context/token"
 import { toast } from 'react-toastify'
 
 const OneGame = () => {
     
-    const {gameId} = useParams()
-    const {user} = useAuth()
+    const { gameId } = useParams()
+    const { user } = useAuth()
     
-    // const gamesArray = [
-    //     {
-    //         id : 0,
-    //         title : "Pirate Yacht 1",
-    //         summary: "",
-    //         img: "../../image1jeu1.jpg",
-    //         otherImg: ["../../image2jeu1.jpg", "../../image3jeu1.jpg", "../../image4jeu1.jpg"],
-    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
-    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
-    //     },
-    //     {
-    //         id : 1,
-    //         title : "Pirate Yacht 2",
-    //         summary: "",
-    //         img: "../../image3jeu2.jpg",
-    //         otherImg: ["../../image2jeu2.jpg", "../../image1jeu2.jpg", "../../image4jeu2.jpg"],
-    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"],
-    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ,
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi." ]     
-    //     },
-    //     {
-    //         id : 2,
-    //         title : "Pirate Yacht 3",
-    //         summary: "",
-    //         img: "../../image2jeu3.jpg",
-    //         otherImg: ["../../image1jeu3.jpg", "../../image3jeu3.jpg"],
-    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
-    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
-    //     },
-    //     {
-    //         id : 3,
-    //         title : "Pirate Yacht 4",
-    //         summary: "",
-    //         img: "../../image2jeu4.jpg",
-    //         otherImg: ["../../image1jeu4.jpg", "../../image3jeu4.jpg"],
-    //         paragTitle: ["Lorem Ipsum", "Lorem Ipsum"],
-    //         paragText: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi.",
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim eget magna vel sodales. Proin vel sapien id nisi laoreet tincidunt. Vivamus tempus eros at metus vulputate, ut sodales justo congue. Nullam scelerisque, purus vel vestibulum sodales, tortor justo gravida purus, sit amet ullamcorper libero elit id mi."]
-    //     }
-    //     ]
-    // const oneGame = gamesArray[gameId]
     
     const [oneGame, setOneGame] = useState([])
     const [updatePage, setUpdatePage] = useState(false)
@@ -403,8 +357,8 @@ const OneGame = () => {
             formData.append("otherImg6", otherImg6)
 
         
-            formData.append("paragTitle", (paragTitle))
-            formData.append("paragText", (paragText))
+            formData.append("paragTitle", JSON.stringify(paragTitle))
+            formData.append("paragText", JSON.stringify(paragText))
 
             
             const serverRes = await axios.put(`/api/game/update/${gameId}`, formData, {headers : token()})

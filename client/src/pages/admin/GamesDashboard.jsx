@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { token } from "../../context/token"
 import { toast } from 'react-toastify'
-import  Tiny   from '../../components/Tiny'
 
 const GameDashboard = () => {
    
@@ -205,7 +204,6 @@ const GameDashboard = () => {
             setCreateInputValue({...createInputValue, [name] : value})
         }
         
-        
     }
    
     
@@ -386,8 +384,8 @@ const GameDashboard = () => {
             formData.append("otherImg6", otherImg6)
 
         
-            formData.append("paragTitle", (paragTitle))
-            formData.append("paragText", (paragText))
+            formData.append("paragTitle", JSON.stringify(paragTitle))
+            formData.append("paragText", JSON.stringify(paragText))
 
             
             const serverRes = await axios.put(`/api/game/update/${itemsToEdit}`, formData, {headers : token()})
@@ -396,7 +394,6 @@ const GameDashboard = () => {
             setUpdatePage(!updatePage)
             handleHideModal()
             
-            console.log(formData)
             
             return toast.success(serverRes.data.message)
             

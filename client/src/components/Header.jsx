@@ -193,8 +193,8 @@ const Header = () => {
                                     <li><NavLink onClick={handleLinkClick} to="/super-admin/tableaudebord/admins">Administrateurs</NavLink></li>
                                 )}
                                 <li><NavLink onClick={handleLinkClick} to="/admin/tableaudebord/jeux">Jeux</NavLink></li>
-                                <li><NavLink onClick={handleLinkClick} to="#">Contacts</NavLink></li>
-                                <li><NavLink onClick={handleLinkClick} to="#">Newsletters</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="/admin/tableaudebord/contacts">Contacts</NavLink></li>
+                                <li><NavLink onClick={handleLinkClick} to="/admin/tableaudebord/newsletters">Newsletters</NavLink></li>
                             </ul>
                         </NavLink>
                         
@@ -255,8 +255,7 @@ const Header = () => {
                             
                         </NavLink>
                         <NavLink className="header-navlink" to="/studio" >Studio</NavLink>
-                        <NavLink className="header-navlink" to="/contact" >Contact</NavLink>
-                        <NavLink className="header-navlink" to="/connexion" >Se connecter</NavLink>
+                        <NavLink className="header-navlink" to="/contact" >Nous contacter</NavLink>
                     </>
                 )}
                 
@@ -290,9 +289,9 @@ const Header = () => {
                                     {user.role === "super-admin" && (
                                         <li><NavLink onClick={toggleBurgerMenu} to="/super-admin/tableaudebord/admins">Administrateurs</NavLink></li>
                                     )}
-                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Jeux</NavLink></li>
-                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Contacts</NavLink></li>
-                                    <li><NavLink onClick={toggleBurgerMenu} to="#">Newsletters</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/admin/tableaudebord/jeux">Jeux</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/admin/tableaudebord/contacts">Contacts</NavLink></li>
+                                    <li><NavLink onClick={toggleBurgerMenu} to="/admin/tableaudebord/newsletters">Newsletters</NavLink></li>
                                 </ul>
                             </NavLink>
                             
@@ -336,7 +335,6 @@ const Header = () => {
                             </NavLink>
                             <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/studio" >Studio</NavLink>
                             <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/contact" >Contact</NavLink>
-                            <NavLink onClick={toggleBurgerMenu} className="burger-menu-navlink" to="/connexion" >Se connecter</NavLink>
                         </>
                     )}
                     

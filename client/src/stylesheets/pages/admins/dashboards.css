@@ -54,6 +54,25 @@ td {
     padding: 1rem;
 }
 
+.dashboard-table-navlink {
+    text-decoration: none;
+    color: white;
+}
+
+
+.dashboard-table-navlink:hover {
+    text-decoration: underline;
+}
+
+
+.dashboard-status-positive {
+    color: lime;
+}
+
+.dashboard-status-negative {
+    color: red;
+}
+
 /****** UPDATE ACCOUNT PAGE ******/
 .updateaccount-page-main {
     text-align: center;

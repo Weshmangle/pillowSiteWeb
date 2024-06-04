@@ -98,7 +98,7 @@
 }
 
 .home-page-social-media-article {
-    height: 100vh;
+    min-height: 100vh;
     padding: 3rem;
     background: #171717;
 }
@@ -162,7 +162,7 @@
     }
     
     .home-page-social-media-article {
-        height: 100vh;
+        min-height: 100vh;
         padding: 3rem;
         background: #171717;
     }
@@ -187,7 +187,7 @@
     }
     
     .home-parallax-img-container {
-        height: 80vh;
+        min-height: 80vh;
     }
     
     .home-parallax-img {

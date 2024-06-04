@@ -1,11 +1,4 @@
 import Game from "../models/gameModel.js"
-import dotenv from 'dotenv'
-
-import fs from 'fs';
-import path from 'path';
-
-
-dotenv.config()
 
 
 /**************** POST **********************/
@@ -73,7 +66,7 @@ export const getAllGames = async (req, res) => {
     
     try {
         
-        const allGames = await Game.find({})
+        const allGames = await Game.find({}).sort({ createdAt: -1 })
         
         res.status(200).json(allGames)
         
@@ -142,17 +135,13 @@ export const updateGame = async (req, res) => {
         }
         
         if (paragTitle && paragTitle.trim() !== "") {
-            
-            const titleArray = paragTitle.split(",")
-            
-            updateGame.paragTitle = titleArray
+
+            updateGame.paragTitle = JSON.parse(paragTitle)
         }
         
         if (paragText && paragText.trim() !== "") {
             
-            const textArray = paragText.split(",")
-            
-            updateGame.paragText = textArray
+            updateGame.paragText = JSON.parse(paragText)
         }
         
         

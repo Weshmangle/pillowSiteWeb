@@ -71,24 +71,33 @@ const Login = () => {
             {/****** Bloc du formulaire *******/}
             <article className="loginpage-article">
             
-            <h1 className="loginpage-title">Identifiez-vous</h1>
+            {user && user.userToken ? (
                 
-                {/**** Formulaire de connexion  ***********/}
-                <form onSubmit={handleSubmit}>
-                  
-                  <fieldset className="loginpage-input-label">
-                    <input value={inputValue.username} onChange={handleChange} name="username" type="text" className="loginpage-input" required />
-                    <label htmlFor="username" >Identifiant</label>
-                  </fieldset>
-                  
-                  <fieldset className="loginpage-input-label">
-                    <input value={inputValue.password} onChange={handleChange} name="password" type="password" className="loginpage-input" required />
-                    <label htmlFor="password" >Mot de passe</label>
-                  </fieldset>
-                  
-                  <button type="submit" className="loginpage-form-button"> Se connecter </button>
+                <h1>Vous êtes déjà connecté</h1>
+            
+            ) : (
                 
-                </form>
+                <>
+                    <h1 className="loginpage-title">Identifiez-vous</h1>
+                        
+                    {/**** Formulaire de connexion  ***********/}
+                    <form onSubmit={handleSubmit}>
+                      
+                      <fieldset className="loginpage-input-label">
+                        <input value={inputValue.username} onChange={handleChange} name="username" type="text" className="loginpage-input" required />
+                        <label htmlFor="username" >Identifiant</label>
+                      </fieldset>
+                      
+                      <fieldset className="loginpage-input-label">
+                        <input value={inputValue.password} onChange={handleChange} name="password" type="password" className="loginpage-input" required />
+                        <label htmlFor="password" >Mot de passe</label>
+                      </fieldset>
+                      
+                      <button type="submit" className="loginpage-form-button"> Se connecter </button>
+                    
+                    </form>
+                </>
+            )}
             
             </article>
             

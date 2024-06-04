@@ -49,7 +49,7 @@ export const getAllSubscribers = async (req, res) => {
     
     try {
         
-        const subscribers = await Newsletter.find({})
+        const subscribers = await Newsletter.find({}).sort({ createdAt: -1 })
         
         res.status(200).json(subscribers)
         

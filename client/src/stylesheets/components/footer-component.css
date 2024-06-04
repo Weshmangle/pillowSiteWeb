@@ -1,4 +1,40 @@
 .footer-component {
-    height: 100vh;
     background: #171717;
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+
+.footer-nav-navlink {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 1rem;
+}
+
+.footer-nav-navlink:hover {
+    text-decoration: underline;
+}
+
+.footer-copyright-text {
+    margin-top: 5rem;
+}
+
+/********* MEDIA QUERIES *************/
+/*********** TABLETTE **************/
+@media screen and (min-width:600px) and (max-width:900px) {
+    .footer-nav-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+/**********  DESKTOP **************/
+@media screen and (min-width:900px) {
+    
+    .footer-nav-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+
 }

@@ -105,7 +105,7 @@ export const getAllUsers = async (req, res) => {
     
     try {
         
-        const allUsers = await User.find({}).select("-password")
+        const allUsers = await User.find({}).select("-password").sort({ createdAt: -1 })
         
         res.status(200).json(allUsers)
         

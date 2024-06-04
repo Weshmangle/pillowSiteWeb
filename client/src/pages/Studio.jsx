@@ -205,7 +205,9 @@ const Studio = () => {
                 return { ...member, memberImg: member.memberImg instanceof File ? "" : member.memberImg }
             
             })
-    
+            
+            
+            
             formData.append("title", title);
             formData.append("teamMember", JSON.stringify(processedTeamMembers));
             formData.append("paragTitle", JSON.stringify(paragTitle));
@@ -217,6 +219,7 @@ const Studio = () => {
             handleHideModal()
             setEditSectionIndex(null)
             setEditSectionIndex(null)
+            
             
             return toast.success(serverRes.data.message)
             
