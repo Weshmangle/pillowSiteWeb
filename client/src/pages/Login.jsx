@@ -1,6 +1,8 @@
 import { useState , useEffect } from 'react'
 import axios from 'axios'
 import {useAuth} from '../context/AuthContext'
+import { toast } from 'react-toastify'
+
 
 const Login = () => {
     
@@ -42,7 +44,7 @@ const Login = () => {
             if (username.trim() === ""
             || password.trim() === ""
             ) {
-                return setMessage("Veuillez remplir tout les champs")
+                return toast.error("Veuillez remplir tout les champs")
             }
         
             // const checkPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{8,300}$/
@@ -57,10 +59,12 @@ const Login = () => {
             
             await auth.login(serverRes.data)
             
+            return toast.success(serverRes.data.message)
+            
             
         } catch (e) {
             
-            setMessage(e.response.data.message)
+            return toast.error(e.response.data.message)
         }
     }
     
