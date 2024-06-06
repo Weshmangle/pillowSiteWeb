@@ -1,0 +1,13 @@
+# Database
+MONGO_URI = mongodb+srv://amadhd94:AmadHD941@3wa.mtqtmav.mongodb.net/pillowinteractive
+
+# Listening port
+PORT = 3000
+BASE_URL = http://pillow-interactive.fr
+
+# Client side URL for allowed access to API data with cors
+CLIENT_URL = http://pillow-interactive.fr
+
+# Token
+JWT_SECRET = $2y$10$icc8svDngl1zd0Ph/uM1c.eSBBG3w36cDE1Et9o2cV1fbEsU6ZDea
+JWT_EXPIRATION = 1d
