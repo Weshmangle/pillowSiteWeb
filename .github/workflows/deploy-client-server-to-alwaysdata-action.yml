@@ -9,14 +9,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: cd client
-      - run: ls
-      - run: pwd
-      - run: echo $URL_FRONT
-      - run: echo VITE_API_URL = $URL_FRONT > .env
-      - run: npm install
-      - run: npm run build
-      #- run: npm run cb2s
+      - run: ./build-scripts/build.sh
       - uses: actions/upload-artifact@v3
         with:
           name: Build-client
