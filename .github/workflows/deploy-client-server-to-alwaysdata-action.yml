@@ -2,13 +2,19 @@ name: deploy-client-server-to-alwaysdata-action
 run-name: ${{ github.actor }} DEPLOY GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  deploy-client-server-to-alwaysdata-action:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: pwd
-      - run: ls
-      - run: echo 'test deploy script'
+      - run: cd client
+      - run: echo ${{ secret.URL_FRONT }}
+      - run: echo VITE_API_URL = ${{ secret.URL_FRONT }} > .env
+      - run: npm run build
+      #- run: npm run cb2s
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build-client
+          path: dist/
