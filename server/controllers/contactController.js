@@ -6,9 +6,9 @@ import mongoose from 'mongoose'
 /* Créer un contact */
 export const createContact = async (req, res) => {
     
+    const { name, email, subject, message } = req.body
+    
     try {
-        
-        const { name, email, subject, message } = req.body
         const checkEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         
         if (name.trim() === ""
@@ -53,9 +53,14 @@ export const createContact = async (req, res) => {
         res.status(200).json({ message : "Message envoyé avec succès" })
         
         
-    } catch (e) {
+    } catch (error) {
+        if(!(name || email || subject || message))
+        {
+            console.error("[ Contact ] Email didn't send")
+            console.error('[ Contact ] All or one of parameters (name, email, subject or message) are missing in the request')
+        }
         
-        console.log(e)
+        console.error(error)
         res.status(400).json({message : "Impossible d'envoyer le message"})
         
     }
