@@ -1,5 +1,5 @@
 #!/bin/bash
-ENV_FILE=.env.production
+ENV_FILE=../server/.env.production
 # Create .env file
 echo > $ENV_FILE
 
