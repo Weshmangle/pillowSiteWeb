@@ -33,6 +33,7 @@ app.use(cors({
 /* Route API (toutes préfixées par /api) */
 app.use("/api", router)
 
+app.get('*', (_, res) => res.redirect('/'));
 
 /******* Démarre le serveur et écoute sur le port défini
 dans les variables d'environnement *********************/
