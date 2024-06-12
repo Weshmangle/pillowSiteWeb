@@ -37,5 +37,5 @@ app.use("/api", router)
 /******* Démarre le serveur et écoute sur le port défini
 dans les variables d'environnement *********************/
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running : ${process.env.BASE_URL}`)
+    console.log(`[ NODE.JS - SERVER ] Server is running : ${process.env.BASE_URL}:${process.env.PORT}`)
 })
