@@ -10,7 +10,7 @@ jobs:
         with:
           node-version: '20'
       - run: cd client
-      - run: echo ${{ secret.URL_FRONT }}
+      - run: echo ${{ secrets.URL_FRONT }}
       - run: echo VITE_API_URL = ${{ secrets.URL_FRONT }} > .env
       - run: npm run build
       #- run: npm run cb2s
