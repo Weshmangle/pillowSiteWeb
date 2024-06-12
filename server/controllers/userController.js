@@ -64,6 +64,7 @@ export const login = async (req, res) => {
         const oneUser = await User.findOne({username})
         
         if (!oneUser) {
+            //TODO Should be replace by a generic message like `wrong account or password` to improve the security
             return res.status(404).json({message : "Aucun compte trouvé avec ce nom d'utilisateur"})
         }
         
