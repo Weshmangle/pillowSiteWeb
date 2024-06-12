@@ -4,11 +4,15 @@ on: [push]
 jobs:
   deploy-client-server-to-alwaysdata-action:
     runs-on: ubuntu-latest
+    env:
+      URL_FRONT: ${{ vars.URL_FRONT }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - run: echo URL_FRONT from user ${{ vars.URL_FRONT }}
+      - run: echo URL_FRONT from scripts $URL_FRONT
       - run: chmod +x build-scripts/build.sh && ./build-scripts/build.sh
       - uses: actions/upload-artifact@v3
         with:
