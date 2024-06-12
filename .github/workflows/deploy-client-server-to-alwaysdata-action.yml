@@ -10,8 +10,9 @@ jobs:
         with:
           node-version: '20'
       - run: cd client
-      - run: echo ${{ secrets.URL_FRONT }}
-      - run: echo VITE_API_URL = ${{ secrets.URL_FRONT }} > .env
+      - run: echo ${{ variables.URL_FRONT }}
+      - run: echo VITE_API_URL = ${{ variables.URL_FRONT }} > .env
+      - run: npm install
       - run: npm run build
       #- run: npm run cb2s
       - uses: actions/upload-artifact@v3
