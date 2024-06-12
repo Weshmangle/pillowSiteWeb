@@ -5,6 +5,9 @@ import axios from 'axios'
 import { token } from "../context/token"
 import { useAuth } from '../context/AuthContext'
 
+import discordLogo from '../assets/discord-logo-0.png'
+import facebookLogo from '../assets/facebook-logo-facebook-icon-transparent-free-png.png'
+import twitterXLogo from '../assets/logo-twitterX.png'
 
 const Home = () => {
     
@@ -41,7 +44,7 @@ const Home = () => {
     
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [isSlided, setIsSlided] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     
 
     useEffect(() => {
@@ -130,7 +133,7 @@ const Home = () => {
             
             
                 {/*** Slider d'en-tête de la page d'accueil ***/}
-                {!isLoading && (
+                {isLoading && (
                 
                     <header className="home-page-header">
                     
@@ -188,15 +191,15 @@ const Home = () => {
                     {/*** Section avec les logos réseaux sociaux ***/}
                     <section className="home-page-social-media-section">
                         <figure>
-                            <img loading="lazy" className="img-responsive" src="./src/assets/discord-logo-0.png" alt="" />
+                            <img loading="lazy" className="img-responsive" src={discordLogo} alt="" />
                         </figure>
                         
                         <figure>
-                            <img loading="lazy" className="img-responsive" src="./src/assets/facebook-logo-facebook-icon-transparent-free-png.png" alt="" />
+                            <img loading="lazy" className="img-responsive" src={facebookLogo} alt="" />
                         </figure>
                         
                         <figure>
-                            <img loading="lazy" className="img-logo-twitter" src="./src/assets/logo-twitterX.png" alt="" />
+                            <img loading="lazy" className="img-logo-twitter" src={twitterXLogo} alt="" />
                         </figure>
                     </section>
                     
