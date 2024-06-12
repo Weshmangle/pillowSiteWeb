@@ -1,4 +1,4 @@
-import { useEffect , useState } from 'react'
+import React, { useEffect , useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import { token } from "../context/token"
@@ -262,7 +262,7 @@ const Studio = () => {
             
                 {editInputValue.paragTitle.map((oneParag, index) => (
                     
-                    <>
+                    <React.Fragment key={index}>
                         {/**** Section avec un titre et un paragraphe ****/}
                         <section key={index} className="studio-page-section">
                         
@@ -295,7 +295,7 @@ const Studio = () => {
                             )}
                             
                         </section>
-                    </>
+                    </React.Fragment>
                     
                 ))}
                 
@@ -308,8 +308,8 @@ const Studio = () => {
                     
                         {editInputValue.teamMember.map((oneMember, index) => (
                         
-                            <>
-                                <section key={index} className="studio-page-team-cards">
+                            <React.Fragment key={index}>
+                                <section className="studio-page-team-cards">
                                     
                                     {user && user.userToken && <i onClick={() => displayFileInput(index)} className="fa-solid fa-pen admin-studio-update-memberImg-pen"></i>}
                                     <img className="img-responsive" src={import.meta.env.VITE_API_URL+oneMember.memberImg} alt={`photo de ${oneMember.name}`} />
@@ -360,7 +360,7 @@ const Studio = () => {
                                     
                                 )}
                                 
-                            </>
+                            </React.Fragment>
                         ))}
                         
                     </div>
