@@ -10,8 +10,10 @@ jobs:
         with:
           node-version: '20'
       - run: cd client
-      - run: echo $variables.URL_FRONT
-      - run: echo VITE_API_URL = $variables.URL_FRONT > .env
+      - run: ls
+      - run: pwd
+      - run: echo $URL_FRONT
+      - run: echo VITE_API_URL = $URL_FRONT > .env
       - run: npm install
       - run: npm run build
       #- run: npm run cb2s
