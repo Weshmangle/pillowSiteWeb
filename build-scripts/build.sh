@@ -5,4 +5,4 @@ echo $URL_FRONT
 echo VITE_API_URL = $URL_FRONT > .env
 npm install
 npm run build
-npm run cb2s
+../build-scripts/copy_build_to_server.sh
