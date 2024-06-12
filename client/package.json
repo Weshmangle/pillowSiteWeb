@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "cb2s": "../build-scripts/copy_build_to_server.bat",
+    "cb2s": "copy_build_to_server.bat",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
