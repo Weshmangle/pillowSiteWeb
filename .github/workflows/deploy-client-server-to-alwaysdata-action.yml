@@ -13,5 +13,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build-server-with-client
-          path: server
+          path: | 
+            server
             !server/.gitignore
