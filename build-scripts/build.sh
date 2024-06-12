@@ -1,9 +1,6 @@
-cd client
 ls
+cd client
 pwd
-echo VITE_API_URL = {
-echo $URL_FRONT
-echo }
 echo VITE_API_URL = $URL_FRONT > .env
 npm install
 npm run build
