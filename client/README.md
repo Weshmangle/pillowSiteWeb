@@ -5,6 +5,14 @@
 - **axios** : Pour les requêtes HTTP.
 - **react-router-dom** : Pour la gestion des routes dans React.
 
+## Developement
+1. Add file .env in root:
+
+Exemple .env
+```
+VITE_API_URL = localhost:4000
+```
+
 
 ## Installation
 1. Ouvrir votre terminal et accéder au dossier **client**
