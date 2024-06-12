@@ -44,7 +44,7 @@ const Home = () => {
     
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [isSlided, setIsSlided] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     
 
     useEffect(() => {
@@ -60,6 +60,7 @@ const Home = () => {
                 setAllGames(serverRes.data)
                 setIsLoading(false)
             } catch (e) {
+                console.error(e.stack)
                 setIsLoading(false)
             }
         }
@@ -133,7 +134,7 @@ const Home = () => {
             
             
                 {/*** Slider d'en-tête de la page d'accueil ***/}
-                {isLoading && (
+                {!isLoading && (
                 
                     <header className="home-page-header">
                     
