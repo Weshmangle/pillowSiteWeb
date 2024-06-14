@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       URL_FRONT: ${{ vars.URL_FRONT }}
+      SSH_KEY: ${{ secrets.SSH_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
