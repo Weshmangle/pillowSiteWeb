@@ -1,9 +1,8 @@
 ls
-
-echo $SSH_KEY > ~/.ssh/id_ed25519.pub
-ls ~/.ssh/id_ed25519.pub
+echo $SSH_KEY > id_ed25519.pub
+ls id_ed25519.pub
 echo "file" > lolilol
-scp lolilol weshmangle_ssh@ssh-weshmangle.alwaysdata.net:~/
+scp -i id_ed25519.pub lolilol weshmangle_ssh@ssh-weshmangle.alwaysdata.net:~/
 
 cd client
 pwd
