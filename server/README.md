@@ -56,3 +56,4 @@ JWT_EXPIRATION = 1d
 10. Submit and reload the website
 11. If you have someproblem check logs inside ~/admin/logs
     * If you have a message like `Connection to upstream refused`, maybe the command (at the 8. step) is not correct or the server port 8100 is not correcly used. Check if `server.js` and `.env` have good path. And don't forget about the `Working directory`
+12. magick mogrify -quality 85% -format jpg *.jpg
